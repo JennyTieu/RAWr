@@ -11,3 +11,4 @@ class ReferenceItem {
         this.image = image;
     }
 }
+export default ReferenceItem;
