@@ -1,29 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View ,Image} from 'react-native';
+import React, { useState } from 'react';
+import MainNavigator from './navigation/MainNavigator';
+import {ReferenceContext} from './data/ReferenceContext';
+import{ TAGS, REFERENCEITEMS, IDCOUNTERTAGS, IDCOUNTERREFERENCES} from './data/dummy-data';
 
-export default function App() {
+export default (App) => {
+  const [referenceData, setReferenceData] = useState({
+    tags: TAGS,
+    referenceItems: REFERENCEITEMS,
+    idCOunterTags: IDCOUNTERTAGS,
+    idCounterReferences: IDCOUNTERREFERENCES
+  });
+
+
+
   return (
-    <View style={styles.container}>
+//    <View style={styles.container}>
       //how to add images
-      <Image style={styles.image} source={require('./data/artworks/for__infinity/48stylised.jpg')}/>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+//      <Image style={styles.image} source={require('./data/artworks/for__infinity/48stylised.jpg')}/>
+//      <Text>Open up App.js to start working on your app!</Text>
+//      <StatusBar style="auto" />
+//    </View>
+    <ReferenceContext.Provider value ={[referenceData, setReferenceData]}>
+      <MainNavigator />
+    </ReferenceContext.Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image:{
-    alignItems:'center',
-    width:'100%',
-    height:'100%',
-    resizeMode:'contain'
-  }
-});
+
