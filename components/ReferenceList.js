@@ -50,8 +50,10 @@ export default ReferenceList = (props) => {
                             id = {itemData.item.id} 
                             tagIds={itemData.item.tagIds}
                             title = {itemData.item.title}
-                            isMarked={markedHandler}
-                            isUsed={usedHandler}
+                            isMarked={itemData.item.isMarked}
+                            isUsed={itemData.item.isUsed}
+                            onMarked={markedHandler}
+                            onUsed={usedHandler}
                             comment={itemData.item.comment}
                             source={itemData.item.source}
                             image={itemData.item.image}

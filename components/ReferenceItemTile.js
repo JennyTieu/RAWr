@@ -75,11 +75,12 @@ const styles = StyleSheet.create({
       color: "#333",
     },
     image:{
-      height:500,
+      height: 500,
+      width:'100%',
       alignItems:'center',
       justifyContent: 'center',
       backgroundColor: 'black',
       width:'100%',
-      resizeMode:'contain'
+      resizeMode:'contain',
     }
 });
