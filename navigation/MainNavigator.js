@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Ionicons} from '@expo/vector-icons';
 import MarkedNavigator from './MarkedNavigator';
+import UsedNavigator from './UsedNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +16,8 @@ export default MainNavigator = () => {
 
             if (route.name === 'Home') {
               iconName = 'md-home';
+            } else if (route.name === 'Used') {
+              iconName = focused ? 'md-book' : 'md-book-outline';
             } else if (route.name === 'Marked') {
               iconName = focused ? 'md-star' : 'md-star-outline';
             }
@@ -28,6 +31,7 @@ export default MainNavigator = () => {
         }}
       >
         {/* <Tab.Screen name ="Home" component={HomeNavigator}/> */}
+        <Tab.Screen name="Used" component={UsedNavigator}/>
         <Tab.Screen name="Marked" component={MarkedNavigator}/>
       </Tab.Navigator>
     </NavigationContainer>

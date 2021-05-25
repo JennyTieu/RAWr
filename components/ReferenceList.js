@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import{View, FlatList} from 'react-native';
 import ReferenceItemTile from './ReferenceItemTile';
 import {ReferenceContext} from '../data/ReferenceContext';
+import {TAGS} from '../data/dummy-data';
 
 export default ReferenceList = (props) => {
     const[referenceData, setReferenceData] = useContext(ReferenceContext);
@@ -39,6 +40,21 @@ export default ReferenceList = (props) => {
         }));
     };
 
+    const tagHandler = (tag) => {
+        let tagString = '';
+
+        for(i=0; i<tag.length; i++){
+            for(n=0; n< referenceData.tags.length; n++){
+                if(tag[i] === referenceData.tags[n].id){
+                    tagString+= ('#'+referenceData.tags[n].title + ' ');
+                }
+            }
+            
+        }
+
+        return tagString;
+    };
+
     return(
         <View style={{ flex:1}}>
             <FlatList
@@ -48,7 +64,7 @@ export default ReferenceList = (props) => {
                     return(
                         <ReferenceItemTile
                             id = {itemData.item.id} 
-                            tagIds={itemData.item.tagIds}
+                            tagIds={tagHandler(itemData.item.tagIds)}
                             title = {itemData.item.title}
                             isMarked={itemData.item.isMarked}
                             isUsed={itemData.item.isUsed}

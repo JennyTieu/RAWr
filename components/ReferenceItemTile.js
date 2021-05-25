@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image} from 'react-native';
 import {Button} from 'react-native-elements';
-import {Ionicons} from '@expo/vector-icons';
+import {Ionicons, FontAwesome5, AntDesign} from '@expo/vector-icons';
 
 
 
@@ -30,17 +30,31 @@ export default ReferenceItemTile = (props) => {
                 />
             </View>
             <Image style={styles.image} source={props.image}/>
-            
-            <View >
-                
-                <Text>Source: {props.source}</Text>
-                <Text>Note: {props.comment}</Text>
+            <View style={styles.noteContainer}>
+                <FontAwesome5 name='copyright' size={24}/>
+                <Text>      {props.source}</Text>
+            </View>
+            <View style={styles.noteContainer}>
+                <FontAwesome5 name='sticky-note' size={24}/>
+                <Text>      {props.comment}</Text>
+            </View>
+            <View style={styles.noteContainer}> 
+                <FontAwesome5 name='hashtag' size={24}/>
+                <Text>      {props.tagIds}</Text>
+            </View>
+            <View style={styles.buttonContainer}>
+                <Button 
+                    onPress={() => {}}
+                    type="clear"
+                    title=' Edit'
+                    icon={<AntDesign name='edit' size={24} color="rgb(0, 122, 255)"/>}
+                />
                 <Button
                     onPress={() => {props.onDelete(props.id)}}
                     type="clear"
                     icon={
                     <Ionicons
-                        name="md-close-circle-outline"
+                        name="trash-sharp"
                         size={24}
                         color="rgb(0, 122, 255)"
                     />
@@ -62,12 +76,20 @@ const styles = StyleSheet.create({
     },
     buttonContainer:{
         flex: 1,
-        
         height: 50,
         width: '100%',
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
+        backgroundColor: "white",
+    },
+    noteContainer:{
+        padding: 10,
+        flex: 1,
+        width: '100%',
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
         backgroundColor: "white",
     },
     title: {
