@@ -4,7 +4,7 @@ import {SearchBar} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
 import GridTile from "../components/GridTile";
 
-export default HomeScreen = (props) => {
+export default HomeScreen = ({ route, navigation}) => {
 
   const[referenceData] = useContext(ReferenceContext);
   const allReferences = referenceData.referenceItems.filter(item => item.image);
@@ -20,6 +20,7 @@ export default HomeScreen = (props) => {
         <SearchBar 
           placeholder="enter tag ..."
           containerStyle= {styles.searchBar}
+          lightTheme="true"
         />
       </View>
       <View style={styles.middleContainer}>
