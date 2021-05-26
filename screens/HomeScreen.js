@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, FlatList} from "react-native";
 import {SearchBar, Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
-import GridTile from "../components/GridTile";
+import GridTile from "../components/GridTileImages";
 import SearchScreen from "./SearchScreen";
 import {Ionicons} from "@expo/vector-icons";
 
@@ -13,7 +13,7 @@ export default HomeScreen = ({ route, navigation}) => {
   const [showSearchScreen, setShowSearchScreen] = useState(false);
 
   const clickHandler = (id) => {
-    console.log(id);
+    console.log("Image id: " + id);
   };
 
   searchHandler = () => {
@@ -40,7 +40,7 @@ export default HomeScreen = ({ route, navigation}) => {
         />
         <Button 
           type="clear"
-          icon={<Ionicons name="md-options" size={30}/>}
+          icon={<Ionicons name="md-options-outline" size={30}/>}
           onPress={searchHandler}
         />
       </View>
