@@ -27,7 +27,7 @@ export default SearchScreen = (props) => {
     >
       <View style={styles.screenContainer}>
         <View style={styles.topContainer}>
-          <Text>Search Options</Text>
+          <Text>Filter</Text>
         </View>
         <View style={styles.middleContainer}>
           <FlatList
