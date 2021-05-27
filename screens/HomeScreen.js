@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useLayoutEffect} from 'react';
 import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, FlatList} from "react-native";
 import {SearchBar, Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
@@ -8,6 +8,19 @@ import {Ionicons} from "@expo/vector-icons";
 
 export default HomeScreen = ({ route, navigation}) => {
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+      <Button 
+        type="clear" 
+        icon={<Ionicons 
+          name="md-bookmark-outline" 
+          size={30} />} 
+        onPress={() => navigation.navigate("Tags")}
+      />)
+    });
+  }, [navigation]);
+
   const[referenceData] = useContext(ReferenceContext);
   const allReferences = referenceData.referenceItems.filter(item => item.image);
   const [showSearchScreen, setShowSearchScreen] = useState(false);
@@ -16,11 +29,11 @@ export default HomeScreen = ({ route, navigation}) => {
     console.log("Image id: " + id);
   };
 
-  searchHandler = () => {
+  const searchHandler = () => {
     setShowSearchScreen(true);
   };
 
-  cancelModalHandler = () => {
+  const cancelModalHandler = () => {
     setShowSearchScreen(false);
   };
 
@@ -33,7 +46,7 @@ export default HomeScreen = ({ route, navigation}) => {
       />
       <View style={styles.topContainer}>
         <SearchBar 
-          placeholder="enter tag ..."
+          placeholder="search ..."
           containerStyle= {styles.searchBar}
           lightTheme="true"
           onChangeText= {() => {return <SearchScreen />}}
