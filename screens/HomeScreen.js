@@ -1,5 +1,6 @@
 import React, {useContext, useState, useLayoutEffect} from 'react';
-import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, FlatList} from "react-native";
+import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, FlatList,TouchableOpacity} from "react-native";
+import {FloatingAction} from "react-native-floating-action";
 import {SearchBar, Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
 import GridTile from "../components/GridTileImages";
@@ -26,7 +27,7 @@ export default HomeScreen = ({ route, navigation}) => {
   const [showSearchScreen, setShowSearchScreen] = useState(false);
 
   const clickHandler = (id) => {
-    console.log("Image id: " + id);
+    navigation.navigate("Reference", {itemId : id});
   };
 
   const searchHandler = () => {
@@ -35,6 +36,10 @@ export default HomeScreen = ({ route, navigation}) => {
 
   const cancelModalHandler = () => {
     setShowSearchScreen(false);
+  };
+
+  const addReferenceHandler = () => {
+    navigation.navigate("AddReference");
   };
 
   return (
@@ -57,13 +62,21 @@ export default HomeScreen = ({ route, navigation}) => {
           onPress={searchHandler}
         />
       </View>
+      
       <View style={styles.middleContainer}>
         <FlatList
           data={allReferences}
           renderItem={(itemData) => {return <GridTile onClick={clickHandler} image={itemData.item.image} id={itemData.item.id}/>}}
           numColumns={2}
         />
+        
       </View>
+      <TouchableOpacity 
+          style={styles.floatingButton}
+          onPress={addReferenceHandler}
+        >
+          <Ionicons name="md-add" size={40} color="white" />
+        </TouchableOpacity>
     </View>
     //</TouchableWithoutFeedback>
   );
@@ -85,5 +98,18 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderBottomWidth: 0,
     borderTopWidth: 0,
-  }
+  },
+  floatingButton: {
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 80,
+    right: 15,
+    width: 60,
+    height: 60,
+    backgroundColor: 'tomato',
+    borderRadius: 100,
+  },
 });

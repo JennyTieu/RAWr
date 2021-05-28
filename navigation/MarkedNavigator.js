@@ -7,7 +7,7 @@ const MarkedStack = createStackNavigator();
 export default MarkedNavigator = () => {
   return (
     <MarkedStack.Navigator initialRouteName="Marked" screenOptions={{
-      headerStyle: {height: 160},
+      headerStyle: {height: 110},
       headerTitleStyle: {
         fontSize: 32,
         fontWeight: 'bold',

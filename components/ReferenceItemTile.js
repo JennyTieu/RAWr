@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         marginVertical: 15,
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: 'gray'
+        backgroundColor: 'white'
     },
     buttonContainer:{
         flex: 1,

@@ -7,7 +7,7 @@ const UsedStack = createStackNavigator();
 export default UsedNavigator = () => {
   return (
     <UsedStack.Navigator initialRouteName="Used" screenOptions={{
-      headerStyle: {height: 160},
+      headerStyle: {height: 110},
       headerTitleStyle: {
         fontSize: 32,
         fontWeight: 'bold',
