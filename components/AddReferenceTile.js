@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TextInput ,Text, TouchableOpacity, Image} from "react-native";
+import { StyleSheet, View, TextInput ,Text, TouchableOpacity, Image, ScrollView} from "react-native";
 import { Button } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
@@ -10,7 +10,6 @@ export default AddReferenceTile = (props) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [selectedImage, setSelectedImage] = useState(null);
-
 
   
   const [titleInput, setTitleInput] = useState("");
@@ -78,81 +77,122 @@ export default AddReferenceTile = (props) => {
     setSelectedImage({ localUri: pickerResult.uri });
   };
 
+  const showImagePicker = async () => {
+    // Ask the user for the permission to access the media library 
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your photos!");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      setSelectedImage({ localUri: result.uri });
+    }
+  }
+
+  const openCamera = async () => {
+    // Ask the user for the permission to access the camera
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your camera!");
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      setSelectedImage({ localUri: result.uri });
+    }
+  }
+
   
 
-  const toggleCameraHandler = async () => {
-    // const hasPermission = await verifyPermissions(Permissions.CAMERA);
-    const hasPermission = await verifyPermissions(Camera);
-    if (!hasPermission) return;
-
-    setIsCameraOn(!isCameraOn);
-  };
-
-  const flipCameraHandler = () => {
-    if (isCameraOn) {
-      setType(
-        type === Camera.Constants.Type.back
-          ? Camera.Constants.Type.front
-          : Camera.Constants.Type.back
-      );
-    }
-  };
-
   return (
-    <View style={styles.screen}>
-      <View style={styles.topContainer}>
-          
-          <View style={[styles.cameraPreview]}>
-            {selectedImage === null?(
-              <Image
-                source={require("../assets/addRef.png")}
-                style={styles.cameraPreview}
-              />
-            ) : (
-              <TouchableOpacity onPress={() => setSelectedImage(null)}>
+    <ScrollView>
+      <View style={styles.screen}>
+        <View style={styles.topContainer}>
+            
+            <View style={[styles.cameraPreview]}>
+              {selectedImage === null?(
                 <Image
-                  source={{ uri: selectedImage.localUri }}
+                  source={require("../assets/addRef.png")}
                   style={styles.cameraPreview}
                 />
-              </TouchableOpacity>
-            )}
-          </View>
-          <Button title="Select Image" onPress={selectImageHandler} />
+              ) : (
+                <TouchableOpacity onPress={() => setSelectedImage(null)}>
+                  <Image
+                    source={{ uri: selectedImage.localUri }}
+                    style={styles.cameraPreview}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button type= "clear"
+                icon={
+                  <Ionicons
+                    name="md-images"
+                    size={60}
+                    color="rgb(0, 122, 255)"
+                  />}
+                onPress={showImagePicker} />
+            <Button type= "clear" 
+              icon={
+                <Ionicons
+                  name="md-camera"
+                  size={60}
+                  color="rgb(0, 122, 255)"
+                />} 
+              onPress={openCamera} />
+            </View>
+            
+        </View>
+        
+        <TextInput
+          placeholder="Title"
+          style={styles.inputBox}
+          underlineColorAndroid = "transparent"
+          autoCapitalize = "none"
+          onChangeText={changeTitleHandler}
+          value={titleInput}
+        />
+        <TextInput
+          placeholder="Source"
+          style={styles.inputBox}
+          onChangeText={changeSourceHandler}
+          value={sourceInput}
+        />
+        <TextInput
+          placeholder="Note"
+          style={styles.inputBox}
+          onChangeText={changeNoteHandler}
+          value={noteInput}
+        />
+        <Text>Tags</Text>
+        <Button
+          onPress={addHandler}
+          type="clear"
+          icon={
+            <Ionicons
+              name="md-checkmark-circle-outline"
+              size={24}
+              color="rgb(0, 122, 255)"
+            />
+          }
+        />
       </View>
-      
-      <TextInput
-        placeholder="Title"
-        style={styles.inputBox}
-        underlineColorAndroid = "transparent"
-        autoCapitalize = "none"
-        onChangeText={changeTitleHandler}
-        value={titleInput}
-      />
-      <TextInput
-        placeholder="Source"
-        style={styles.inputBox}
-        onChangeText={changeSourceHandler}
-        value={sourceInput}
-      />
-      <TextInput
-        placeholder="Note"
-        style={styles.inputBox}
-        onChangeText={changeNoteHandler}
-        value={noteInput}
-      />
-      <Text>Tags</Text>
-      <Button
-        onPress={addHandler}
-        type="clear"
-        icon={
-          <Ionicons
-            name="md-checkmark-circle-outline"
-            size={24}
-            color="rgb(0, 122, 255)"
-          />
-        }
-      />
-    </View>
+    </ScrollView>
+    
   );
 };
 
@@ -200,4 +240,9 @@ const styles = StyleSheet.create({
   verticalContainer: {
     alignItems: "center",
   },
+  buttonContainer:{
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  }
 });
