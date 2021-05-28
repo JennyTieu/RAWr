@@ -10,9 +10,13 @@ export default AddReferenceTile = (props) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
   const [selectedImage, setSelectedImage] = useState(null);
+
+
+  
   const [titleInput, setTitleInput] = useState("");
   const [sourceInput, setSourceInput] = useState("");
   const [noteInput, setNoteInput] = useState("");
+  const [tagChoice, setTagChoice] = useState([]);
 
 
   const changeTitleHandler = (enteredText) => {
@@ -29,7 +33,10 @@ export default AddReferenceTile = (props) => {
 
 
   const addHandler = () => {
-    console.log("add")
+    if(selectedImage!==null && titleInput !== "" && sourceInput !== "" && noteInput !== "" && tagChoice.length !=0){
+      console.log(selectedImage + ", " + titleInput + ", " + sourceInput + ", " + noteInput + ", " + tagChoice);
+    }
+    
     //if (currentInput !== '') {
     //  props.onAdd(currentInput);
     //}
