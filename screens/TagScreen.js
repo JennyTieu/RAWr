@@ -23,8 +23,7 @@ export default TagScreen = ({ route, navigation}) => {
   const tags = referenceData.tags.filter(item => item.title);
 
   const clickHandler = (id) => {
-    console.log(id);
-    navigation.navigate("IndividualTagScreen");
+    navigation.navigate("IndividualTagScreen", {itemId : id});
   };
 
   return (
