@@ -8,7 +8,7 @@ export default GridTileTags = props => {
         style={styles.itemContainer}
         onPress={() => props.onClick(props.id)}
       >
-        <Text style={styles.gridText}>{props.id}</Text>
+        <Text style={styles.gridText}>{props.title}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     height: 45,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: "lightgrey",
     borderRadius: 30,
   },
   gridText: {
