@@ -2,14 +2,17 @@ import React, {useContext} from "react";
 import { View, Text } from "react-native";
 import{ReferenceContext} from '../data/ReferenceContext';
 
-export default IndividualTagScreen = props => {
+export default IndividualTagScreen = ({route, navigation}) => {
 
   const[referenceData] = useContext(ReferenceContext);
-  const tags = referenceData.tags.filter(item => item.title);
+  const {tagId} = route.params;
+  const tagID = route.params.itemId;
+
+  const selectedTag = referenceData.tags.filter(item => item.id === tagId);
 
   return (
     <View >
-      <Text>{props.id}</Text>
+      <Text>Individual Tag Screen of {tagID}</Text>
     </View>
   )
 }
