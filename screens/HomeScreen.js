@@ -1,9 +1,8 @@
 import React, {useContext, useState, useLayoutEffect} from 'react';
 import {StyleSheet, View, TouchableWithoutFeedback, Keyboard, FlatList,TouchableOpacity} from "react-native";
-import {FloatingAction} from "react-native-floating-action";
 import {SearchBar, Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
-import GridTile from "../components/GridTileImages";
+import GridTileImages from "../components/GridTileImages";
 import SearchScreen from "./SearchScreen";
 import {Ionicons} from "@expo/vector-icons";
 
@@ -66,7 +65,7 @@ export default HomeScreen = ({ route, navigation}) => {
       <View style={styles.middleContainer}>
         <FlatList
           data={allReferences}
-          renderItem={(itemData) => {return <GridTile onClick={clickHandler} image={itemData.item.image} id={itemData.item.id}/>}}
+          renderItem={(itemData) => {return <GridTileImages onClick={clickHandler} image={itemData.item.image} id={itemData.item.id}/>}}
           numColumns={2}
         />
         
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
   middleContainer: {
     width: "100%",
     flexDirection: "row",
-    alignItems: "center",
+    paddingBottom: 130,
   },
   searchBar: {
     flex: 1,
