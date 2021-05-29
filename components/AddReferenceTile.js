@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { StyleSheet, View, TextInput ,Text, TouchableOpacity, Image, ScrollView} from "react-native";
 import { Button } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { Camera } from "expo-camera";
+import TAGS from '../data/dummy-data';
+import {ReferenceContext} from '../data/ReferenceContext';
 import * as ImagePicker from "expo-image-picker";
+import { MultiselectDropdown} from 'sharingan-rn-modal-dropdown';
 
 export default AddReferenceTile = (props) => {
+
   const [isCameraOn, setIsCameraOn] = useState(false);
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
@@ -17,6 +21,13 @@ export default AddReferenceTile = (props) => {
   const [noteInput, setNoteInput] = useState("");
   const [tagChoice, setTagChoice] = useState([]);
 
+  const[referenceData] = useContext(ReferenceContext);
+  const [valueMS, setValueMS] = useState([]);
+
+  const onChangeMS = (value) => {
+    setValueMS(value);
+  };
+  
 
   const changeTitleHandler = (enteredText) => {
     setTitleInput(enteredText);
@@ -67,15 +78,7 @@ export default AddReferenceTile = (props) => {
     }
   };
 
-  const selectImageHandler = async () => {
-    // const hasPermission = await verifyPermissions(Permissions.CAMERA_ROLL);
-    const hasPermission = await verifyPermissions(ImagePicker);
-    if (!hasPermission) return;
 
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    if (pickerResult.cancelled === true) return;
-    setSelectedImage({ localUri: pickerResult.uri });
-  };
 
   const showImagePicker = async () => {
     // Ask the user for the permission to access the media library 
@@ -178,7 +181,17 @@ export default AddReferenceTile = (props) => {
           onChangeText={changeNoteHandler}
           value={noteInput}
         />
-        <Text>Tags</Text>
+        <View style={styles.container}>
+          <MultiselectDropdown
+            label="Tags"
+            data={referenceData.tags}
+            enableSearch
+            chipType="outlined"
+            value={valueMS}
+            onChange={onChangeMS}
+          />
+        </View>
+
         <Button
           onPress={addHandler}
           type="clear"
@@ -244,5 +257,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-  }
+  },
+  container: {
+    paddingTop: 30,
+    marginLeft: 20,
+    marginRight: 20,
+    flex: 1,
+    width: "100%"
+  },
+  buttonView: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    marginTop: 10,
+  },
 });
