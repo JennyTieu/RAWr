@@ -1,5 +1,5 @@
 import React, {useContext,useLayoutEffect} from "react";
-import { View, FlatList } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import {Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
 import {Ionicons} from "@expo/vector-icons";
@@ -22,20 +22,21 @@ export default TagScreen = ({ route, navigation}) => {
   const[referenceData] = useContext(ReferenceContext);
   const tags = referenceData.tags.filter(item => item.title);
 
-  const clickHandler = () => {
-
+  const clickHandler = (id) => {
+    console.log(id);
+    navigation.navigate("IndividualTagScreen");
   };
 
   return (
-    <View>
+    <View >
       <FlatList
         data={tags}
         renderItem={(itemData) => {
           return (
             <GridTileTags 
-              text={itemData.item.title}
               onClick={clickHandler}
-              id={itemData.item.title}
+              title={itemData.item.title}
+              id={itemData.item.id}
             />
           )
         }}
@@ -44,3 +45,4 @@ export default TagScreen = ({ route, navigation}) => {
     </View>
   )
 }
+
