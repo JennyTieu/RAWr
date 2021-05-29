@@ -186,7 +186,8 @@ export default AddReferenceTile = (props) => {
             label="Tags"
             data={referenceData.tags}
             enableSearch
-            chipType="outlined"
+            chipType="flat"
+            primaryColor="pink"
             value={valueMS}
             onChange={onChangeMS}
           />
