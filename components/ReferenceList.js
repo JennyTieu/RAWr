@@ -41,18 +41,18 @@ export default ReferenceList = (props) => {
     };
 
     const tagHandler = (tag) => {
-        let tagString = '';
+        let tags=[];
 
         for(i=0; i<tag.length; i++){
             for(n=0; n< referenceData.tags.length; n++){
                 if(tag[i] === referenceData.tags[n].id){
-                    tagString+= ('#'+referenceData.tags[n].title + ' ');
+                    //tagString+= ('#'+referenceData.tags[n].title + ' ');
+                    tags.push(referenceData.tags[n].title);
                 }
             }
             
         }
-
-        return tagString;
+        return tags;
     };
 
     return(

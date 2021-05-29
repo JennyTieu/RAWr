@@ -1,13 +1,21 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image} from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import {Button} from 'react-native-elements';
 import {Ionicons, FontAwesome5, AntDesign} from '@expo/vector-icons';
+import {Chip} from 'react-native-paper';
+
 
 
 
 export default ReferenceItemTile = (props) => {
     const markedIconName = props.isMarked ? 'md-bookmark' : 'md-bookmark-outline';
     const usedIconName = props.isUsed ? 'md-checkmark-circle' : 'md-checkmark-circle-outline';
+    
+
+    const dataSource = props.tagIds;
+
+    
+
     return (
         <View style={styles.itemContainer}>
             
@@ -40,7 +48,22 @@ export default ReferenceItemTile = (props) => {
             </View>
             <View style={styles.noteContainer}> 
                 <FontAwesome5 name='hashtag' size={24}/>
-                <Text>      {props.tagIds}</Text>
+                <View style={{flex:1, width:"100%", flexDirection:"row",alignContent: "space-between",flexWrap: 'wrap'}}>{
+                    dataSource.map((item,index) => {
+                        return (
+                        <View key={index}
+                            style={{
+                            margin: 5,
+                            flexWrap: 'wrap'
+                            }}>
+                            <Chip key={index} mode="flat" height={30} textStyle={{  fontSize:15}} style={{backgroundColor:"gray"}} style={{alignItems: "center"}} onPress={()=> console.log(item)}>
+                                {item}
+                            </Chip>
+                        </View>
+                    
+                        );
+                    })}
+                </View>
             </View>
             <View style={styles.buttonContainer}>
                 <Button 
