@@ -5,6 +5,7 @@ import TagScreen from "../screens/TagScreen";
 import AddTagScreen from "../screens/AddTagScreen";
 import ReferenceScreen from "../screens/ReferenceScreen";
 import AddReferenceScreen from "../screens/AddReferenceScreen";
+import IndividualTagScreen from "../screens/IndividualTagScreen";
 
 const HomeStack = createStackNavigator();
 
@@ -23,7 +24,7 @@ export default HomeNavigator = () => {
       <HomeStack.Screen name="AddTag" component={AddTagScreen}/>
       <HomeStack.Screen name="Reference" component={ReferenceScreen}/>
       <HomeStack.Screen name="AddReference" component={AddReferenceScreen}/>
-      
+      <HomeStack.Screen name="IndividualTagScreen" component={IndividualTagScreen}/>
       
     </HomeStack.Navigator>
   );
