@@ -41,6 +41,13 @@ export default IndividualTagScreen = ({route, navigation}) => {
       for (let i = 0; i < tags.length; i++) {
         if (tags[i].title === tagTitle) {
           tags[i].title = currentInput;   
+
+          setReferenceData(referenceData => ({
+            tags: referenceData.tags,
+            referenceItems: referenceData.referenceItems,
+            idCounterTags: referenceData.idCounterTags,
+            idCounterReferences: referenceData.idCounterReferences
+          }));
         }
       }
 
