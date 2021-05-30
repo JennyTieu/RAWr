@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from "react-native";
 import {ReferenceContext} from '../data/ReferenceContext';
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "react-native-elements";
@@ -55,6 +55,10 @@ export default IndividualTagScreen = ({route, navigation}) => {
     } 
   };
 
+  const showMorePicsHandler = () => {
+
+  };
+
   return (
     <View style={styles.screenContainer}>
       <View style={styles.topContainer}>
@@ -90,11 +94,28 @@ export default IndividualTagScreen = ({route, navigation}) => {
           }
         />
       </View>
+      <View style={styles.fourthContainer}>
+        <Image style={styles.image} source={require('../data/artworks/ayceesky/meanyMadameRain.jpg')}/>
+        <Image style={styles.image} source={require('../data/artworks/for__infinity/48watercolor2.jpg')}/>
+        <Image style={styles.image} source={require('../data/artworks/for__infinity/demons.jpg')}/>
+        <Button 
+          onPress={showMorePicsHandler}
+          type="solid"
+          buttonStyle={styles.plusButton}
+          icon={
+            <Ionicons
+              name="md-add"
+              size={40}
+              color="rgb(0, 122, 255)"
+            />
+          }          
+        />
+      </View>
       <View style={styles.bottomContainer}>
         <Button 
           onPress={deleteTagHandler}
           type="solid"
-          title="Delete Tag"
+          title="delete tag"
           titleStyle={styles.text}
           buttonStyle={styles.button}
           icon={
@@ -115,7 +136,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   topContainer: {
-    flex: 2,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -129,9 +150,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   bottomContainer: {
-    flex: 2,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  fourthContainer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
   },
   text: {
     fontSize: 20,
@@ -142,5 +170,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#8b0000",
-  }
+  },
+  plusButton: {
+    backgroundColor: "grey",
+    width: 90,
+    height: 90,
+  },
+  image: {
+    width: 90,
+    height: 90,
+  },
 });
