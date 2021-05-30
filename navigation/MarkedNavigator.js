@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import MarkedScreen from '../screens/MarkedScreen';
+import IndividualTagScreen from "../screens/IndividualTagScreen";
 
 const MarkedStack = createStackNavigator();
 
@@ -15,6 +16,7 @@ export default MarkedNavigator = () => {
       }
     }}>
       <MarkedStack.Screen name="Marked" component={MarkedScreen}/>
+      <MarkedStack.Screen name="IndividualTagScreen" component={IndividualTagScreen}/>
     </MarkedStack.Navigator>
   );
 };

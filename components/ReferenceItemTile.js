@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import {Button} from 'react-native-elements';
 import {Ionicons, FontAwesome5, AntDesign} from '@expo/vector-icons';
 import {Chip} from 'react-native-paper';
-
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 
@@ -15,8 +15,13 @@ export default ReferenceItemTile = (props) => {
     const dataSource = props.tagIds;
 
     
+    const tagClickHandler = (title) => {
+        props.navigation.navigate("IndividualTagScreen", {itemTitle : title});
+    };
 
     return (
+        
+
         <View style={styles.itemContainer}>
             
             
@@ -56,7 +61,7 @@ export default ReferenceItemTile = (props) => {
                             margin: 5,
                             flexWrap: 'wrap'
                             }}>
-                            <Chip key={index} mode="flat" height={30} textStyle={{  fontSize:15}} style={{backgroundColor:"gray"}} style={{alignItems: "center"}} onPress={()=> console.log(item)}>
+                            <Chip key={index} mode="flat" height={30} textStyle={{  fontSize:15}} style={{backgroundColor:"gray"}} style={{alignItems: "center"}} onPress={()=> tagClickHandler(item)}>
                                 {item}
                             </Chip>
                         </View>

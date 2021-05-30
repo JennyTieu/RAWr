@@ -40,6 +40,8 @@ export default ReferenceList = (props) => {
         }));
     };
 
+    
+
     const tagHandler = (tag) => {
         let tags=[];
 
@@ -74,6 +76,7 @@ export default ReferenceList = (props) => {
                             source={itemData.item.source}
                             image={itemData.item.image}
                             onDelete={deleteHandler}
+                            navigation={props.navigation}
                         />
                     );
                 }}

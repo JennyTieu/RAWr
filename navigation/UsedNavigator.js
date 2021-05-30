@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import UsedScreen from '../screens/UsedScreen';
+import IndividualTagScreen from "../screens/IndividualTagScreen";
 
 const UsedStack = createStackNavigator();
 
@@ -15,6 +16,7 @@ export default UsedNavigator = () => {
       }
     }}>
       <UsedStack.Screen name="Used" component={UsedScreen}/>
+      <UsedStack.Screen name="IndividualTagScreen" component={IndividualTagScreen}/>
     </UsedStack.Navigator>
   );
 };
