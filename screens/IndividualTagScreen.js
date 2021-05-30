@@ -6,7 +6,7 @@ import { Button } from "react-native-elements";
 
 export default IndividualTagScreen = ({route, navigation}) => {
 
-  const[referenceData] = useContext(ReferenceContext);
+  const[referenceData, setReferenceData] = useContext(ReferenceContext);
   const tags = referenceData.tags.filter(item => item.title);
 
   const tagTitle = route.params.itemTitle;
@@ -22,11 +22,13 @@ export default IndividualTagScreen = ({route, navigation}) => {
   };
 
   const deleteTagHandler = () => {  
-    for (let i = 0; i < tags.length; i++) {
-      if (tags[i].title === tagTitle) {
-        tags.slice(i, 1);  
-      }
-    }
+    setReferenceData(referenceData => ({
+      tags: referenceData.tags.filter(tag => tag.title != tagTitle),
+      referenceItems: referenceData.referenceItems,
+      idCounterTags: referenceData.idCounterTags,
+      idCounterReferences: referenceData.idCounterReferences
+    }));
+    
     navigation.goBack();
   };
 
