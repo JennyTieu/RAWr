@@ -43,6 +43,7 @@ export default IndividualTagScreen = ({route, navigation}) => {
           tags[i].title = currentInput;   
         }
       }
+
       navigation.goBack();
     } 
   };
