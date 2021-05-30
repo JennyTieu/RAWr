@@ -31,7 +31,7 @@ export default InputTile = (props) => {
         type="clear"
         icon={
           <Ionicons
-            name="md-trash-outline"
+            name="md-close-outline"
             size={28}
             color="rgb(0, 122, 255)"
           />
