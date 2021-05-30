@@ -6,7 +6,7 @@ export default GridTileTags = props => {
     <View style={styles.columnWrapper}> 
       <TouchableOpacity
         style={styles.itemContainer}
-        onPress={() => props.onClick(props.id)}
+        onPress={() => props.onClick(props.id, props.title)}
       >
         <Text style={styles.gridText}>{props.title}</Text>
       </TouchableOpacity>
