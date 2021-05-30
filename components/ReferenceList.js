@@ -14,6 +14,7 @@ export default ReferenceList = (props) => {
             idCounterTags: referenceData.idCounterTags,
             idCounterReferences: referenceData.idCounterReferences
         }));
+        props.navigation.goBack();
     };
 
     const markedHandler = (id) => {

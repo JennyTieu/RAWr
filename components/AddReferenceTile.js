@@ -43,8 +43,9 @@ export default AddReferenceTile = (props) => {
 
 
   const addHandler = () => {
-    if(selectedImage!==null && titleInput !== "" && sourceInput !== "" && noteInput !== "" && tagChoice.length !=0){
-      console.log(selectedImage + ", " + titleInput + ", " + sourceInput + ", " + noteInput + ", " + tagChoice);
+    //nur comment/note und source können leer bleiben!
+    if(selectedImage!==null && titleInput !== "" && valueMS.length !==0){
+      props.onAdd(valueMS, titleInput, noteInput, sourceInput, { uri: selectedImage.localUri });
     }
     
     //if (currentInput !== '') {

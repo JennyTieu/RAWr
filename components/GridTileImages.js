@@ -22,10 +22,11 @@ const styles = StyleSheet.create({
     height: 180, 
   },
   image: {
-    resizeMode: "stretch",
     maxWidth: '100%',
     maxHeight: "100%",
     borderRadius: 10,
+    resizeMode:'contain',
+    backgroundColor: 'black',
   },
   columnWrapper: {
     flex: 1, 
