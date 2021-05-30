@@ -5,6 +5,7 @@ import{ReferenceContext} from '../data/ReferenceContext';
 import GridTileImages from "../components/GridTileImages";
 import SearchScreen from "./SearchScreen";
 import {Ionicons} from "@expo/vector-icons";
+import GridTileList from '../components/GridTileList';
 
 export default HomeScreen = ({ route, navigation}) => {
 
@@ -22,7 +23,7 @@ export default HomeScreen = ({ route, navigation}) => {
   }, [navigation]);
 
   const[referenceData] = useContext(ReferenceContext);
-  const allReferences = referenceData.referenceItems.filter(item => item.image);
+  const allReferences = referenceData.referenceItems;
   const [showSearchScreen, setShowSearchScreen] = useState(false);
 
   const clickHandler = (id) => {
@@ -61,14 +62,8 @@ export default HomeScreen = ({ route, navigation}) => {
           onPress={searchHandler}
         />
       </View>
-      
-      <View style={styles.middleContainer}>
-        <FlatList
-          data={allReferences}
-          renderItem={(itemData) => {return <GridTileImages onClick={clickHandler} image={itemData.item.image} id={itemData.item.id}/>}}
-          numColumns={2}
-        />
-        
+      <View  style={styles.middleContainer}>
+        <GridTileList listData={allReferences} navigation={navigation}/>
       </View>
       <TouchableOpacity 
           style={styles.floatingButton}

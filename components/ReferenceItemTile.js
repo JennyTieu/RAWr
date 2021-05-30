@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import {Button} from 'react-native-elements';
 import {Ionicons, FontAwesome5, AntDesign} from '@expo/vector-icons';
 import {Chip} from 'react-native-paper';
-import { createStackNavigator } from '@react-navigation/stack';
 
 
 
@@ -130,7 +129,6 @@ const styles = StyleSheet.create({
       alignItems:'center',
       justifyContent: 'center',
       backgroundColor: 'black',
-      width:'100%',
       resizeMode:'contain',
     }
 });

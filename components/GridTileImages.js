@@ -1,7 +1,9 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Image,Text } from "react-native";
 
-export default GridTileImage = props => {
+
+export default GridTileImage = (props) => {
+  
   return (
     <View style={styles.columnWrapper}> 
       <TouchableOpacity
@@ -10,6 +12,7 @@ export default GridTileImage = props => {
       >
         <Image style={styles.image} source={props.image}/>
       </TouchableOpacity>
+      
     </View>
   );
 };
@@ -22,9 +25,8 @@ const styles = StyleSheet.create({
     height: 180, 
   },
   image: {
-    maxWidth: '100%',
-    maxHeight: "100%",
-    borderRadius: 10,
+    width: '100%',
+    height: "100%",
     resizeMode:'contain',
     backgroundColor: 'black',
   },
