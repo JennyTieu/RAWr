@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import {View, StyleSheet, Modal, Text, FlatList} from "react-native";
-import {Button} from "react-native-elements";
+import {Button, Switch} from "react-native-elements";
 import {Ionicons} from "@expo/vector-icons";
 import{ReferenceContext} from '../data/ReferenceContext';
 import GridTileTags from "../components/GridTileTags";
@@ -27,6 +27,11 @@ export default SearchScreen = (props) => {
     >
       <View style={styles.screenContainer}>
         <View style={styles.topContainer}>
+          <Button 
+            type="clear"
+            icon={<Ionicons name="md-return-down-back" size={34}/>}
+            onPress={props.onCancelModal}
+          />
           <Text>Filter</Text>
         </View>
         <View style={styles.middleContainer}>
@@ -45,11 +50,8 @@ export default SearchScreen = (props) => {
           />
         </View>
         <View style={styles.bottomContainer}>
-          <Button 
-            type="clear"
-            icon={<Ionicons name="md-return-down-back" size={32}/>}
-            onPress={props.onCancelModal}
-          />
+          <Switch style={styles.switch} value={false}/>
+          <Text>hide used references</Text>
         </View>
       </View>
     </Modal>
@@ -68,7 +70,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "space-between"
   },
   middleContainer: {
     flex: 6,
@@ -84,4 +86,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
+  switch: {
+    transform:[{ scaleX: 1.5 }, { scaleY: 1.5 }]
+  }
 })
