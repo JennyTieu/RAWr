@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     height: 45,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "lightgrey",
+    backgroundColor: "white",
     borderRadius: 30,
   },
   gridText: {
