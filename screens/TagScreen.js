@@ -22,8 +22,9 @@ export default TagScreen = ({ route, navigation}) => {
   const[referenceData] = useContext(ReferenceContext);
   const tags = referenceData.tags.filter(item => item.title);
 
-  const clickHandler = (id) => {
-    navigation.navigate("IndividualTagScreen", {itemId : id});
+  const clickHandler = (id, title) => {
+    console.log(title + " " + id);
+    navigation.navigate("IndividualTagScreen", {itemTitle : title});
   };
 
   return (
