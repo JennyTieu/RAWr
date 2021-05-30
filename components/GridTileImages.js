@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: "100%",
     resizeMode:'contain',
-    backgroundColor: 'black',
+    backgroundColor: 'white',
+    borderRadius: 10,
   },
   columnWrapper: {
     flex: 1, 
