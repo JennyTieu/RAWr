@@ -35,9 +35,9 @@ export default SearchScreen = (props) => {
             renderItem={(itemData) => {
               return (
                 <GridTileTags 
-                  text={itemData.item.title}
                   onClick={clickHandler}
-                  id={itemData.item.title}
+                  title={itemData.item.title}
+                  id={itemData.item.id}
                 />
               )
             }}
