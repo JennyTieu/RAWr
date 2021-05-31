@@ -82,7 +82,7 @@ export default ReferenceList = (props) => {
                     );
                 }}
                 style={{width: '100%'}}
-                contentContainerStyle={{allignItems: 'center', padding:20}}
+                contentContainerStyle={{allignItems: 'center', padding:5}}
             />
         </View>
     )
