@@ -8,19 +8,20 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default EditReferenceScreen = ({route, navigation}) => {
 
-  const [refData, setRefData] = useContext(ReferenceContext);
+  const[referenceData, setReferenceData] = useContext(ReferenceContext);
+  const references = referenceData.referenceItems.filter(item => item.id);
 
-  const [titleInput, setTitleInput] = useState("");
-  const [sourceInput, setSourceInput] = useState("");
-  const [noteInput, setNoteInput] = useState("");
-
-  const[referenceData] = useContext(ReferenceContext);
-  const [valueMS, setValueMS] = useState([]);
-
+  const itemTagsIds = route.params.itemTags;
   const itemId = route.params.itemId;
   const itemTitle = route.params.itemTitle;
   const itemSource = route.params.itemSource;
-  const itemNote = route.params.itemNote;
+  const itemNote = route.params.itemNote; 
+
+  const [valueMS, setValueMS] = useState(itemTagsIds);
+  
+  const [titleInput, setTitleInput] = useState("");
+  const [sourceInput, setSourceInput] = useState("");
+  const [noteInput, setNoteInput] = useState("");
 
   const onChangeMS = (value) => {
     setValueMS(value);
@@ -39,7 +40,44 @@ export default EditReferenceScreen = ({route, navigation}) => {
   };
 
   const addHandler = () => {
-    	
+    if (sourceInput !== '') {   
+      for (let i = 0; i < references.length; i++) {
+        if (references[i].source === itemSource) {
+          references[i].source = sourceInput;   
+        }
+      }
+    }
+
+    if (titleInput !== '') {   
+      for (let i = 0; i < references.length; i++) {
+        if (references[i].title === itemTitle) {
+          references[i].title = titleInput;   
+        }
+      }
+    }
+
+    if (noteInput !== '') {   
+      for (let i = 0; i < references.length; i++) {
+        if (references[i].comment === itemNote) {
+          references[i].comment = noteInput;   
+        }
+      }
+    }
+
+    for (let i = 0; i < references.length; i++) {
+      if (references[i].tagIds === itemTagsIds) {
+        references[i].tagIds = valueMS;   
+      }
+    }
+    
+    setReferenceData(referenceData => ({
+      tags: referenceData.tags,
+      referenceItems: referenceData.referenceItems,
+      idCounterTags: referenceData.idCounterTags,
+      idCounterReferences: referenceData.idCounterReferences
+    }));
+
+    navigation.goBack();
   };
  
   return (
@@ -49,7 +87,7 @@ export default EditReferenceScreen = ({route, navigation}) => {
           <Text>Edit Reference Screen</Text>
         </View>
         <View style={styles.middleContainer}> 
-          <Text>Title</Text>
+          <Text style={styles.text}>Change Title:</Text>
           <TextInput
             placeholder={itemTitle}
             style={styles.inputBox}
@@ -58,14 +96,14 @@ export default EditReferenceScreen = ({route, navigation}) => {
             onChangeText={changeTitleHandler}
             value={titleInput}
           />
-          <Text>Source</Text>
+          <Text style={styles.text}>Change Source:</Text>
           <TextInput
             placeholder={itemSource}
             style={styles.inputBox}
             onChangeText={changeSourceHandler}
             value={sourceInput}
           />
-          <Text>Note</Text>
+          <Text style={styles.text}>Change Note:</Text>
           <TextInput
             placeholder={itemNote}
             style={styles.inputBox}
@@ -91,7 +129,7 @@ export default EditReferenceScreen = ({route, navigation}) => {
             icon={
               <Ionicons
                 name="md-checkmark-circle-outline"
-                size={24}
+                size={32}
                 color="rgb(0, 122, 255)"
               />
             }
@@ -160,4 +198,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 10,
   },
+  text: {
+    alignSelf: "flex-start",
+    fontWeight: "bold"
+  }
 });

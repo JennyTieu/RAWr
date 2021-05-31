@@ -41,9 +41,8 @@ export default ReferenceList = (props) => {
         }));
     };
 
-    const onEditHandler = (id, title, source, comment) => {
-        console.log(title + " " + id + " " + source + " " + comment);
-        props.navigation.navigate("EditReferenceScreen", {itemId : id, itemTitle : title, itemSource : source, itemNote : comment});
+    const onEditHandler = (id, title, source, comment, tags) => {
+        props.navigation.navigate("EditReferenceScreen", {itemId : id, itemTitle : title, itemSource : source, itemNote : comment, itemTags : tags});
     };
 
     const tagHandler = (tag) => {
@@ -71,6 +70,7 @@ export default ReferenceList = (props) => {
                         <ReferenceItemTile
                             id = {itemData.item.id} 
                             tagIds={tagHandler(itemData.item.tagIds)}
+                            tags={itemData.item.tagIds}
                             title = {itemData.item.title}
                             isMarked={itemData.item.isMarked}
                             isUsed={itemData.item.isUsed}

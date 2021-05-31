@@ -68,7 +68,7 @@ export default ReferenceItemTile = (props) => {
             </View>
             <View style={styles.buttonContainer}>
                 <Button 
-                    onPress={() => {props.onEdit(props.id, props.title, props.source, props.comment)}}
+                    onPress={() => {props.onEdit(props.id, props.title, props.source, props.comment, props.tags)}}
                     type="clear"
                     title=' Edit'
                     icon={<AntDesign name='edit' size={24} color="rgb(0, 122, 255)"/>}
