@@ -43,15 +43,15 @@ export default ReferenceItemTile = (props) => {
             </View>
             <Image style={styles.image} source={props.image}/>
             <View style={styles.noteContainer}>
-                <FontAwesome5 name='copyright' size={24}/>
-                <Text>      {props.source}</Text>
+                <FontAwesome5 name='copyright' size={24}  style={{paddingRight:15}}/>
+                <Text style={styles.commentText}>{props.source}</Text>
             </View>
             <View style={styles.noteContainer}>
-                <FontAwesome5 name='sticky-note' size={24}/>
-                <Text>      {props.comment}</Text>
+                <FontAwesome5 name='sticky-note' size={24} style={{paddingRight:15}}/>
+                <Text style={styles.commentText}>{props.comment}</Text>
             </View>
             <View style={styles.noteContainer}> 
-                <FontAwesome5 name='hashtag' size={24}/>
+                <FontAwesome5 name='hashtag' size={24}  style={{paddingRight:15}}/>
                 <View style={{flex:1, width:"100%", flexDirection:"row",alignContent: "space-between",flexWrap: 'wrap'}}>{
                     dataSource.map((item,index) => {
                         return (
@@ -95,8 +95,9 @@ export default ReferenceItemTile = (props) => {
 
 const styles = StyleSheet.create({
     itemContainer:{
+        flexWrap: 'wrap',
         flex:1,
-        marginVertical: 15,
+        margin: 5,
         flexDirection: "column",
         alignItems: "center",
         backgroundColor: 'white'
@@ -118,6 +119,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-start",
         backgroundColor: "white",
+    },
+    commentText:{
+        textAlign: "auto",
+        flexWrap:"wrap",
+        width:"90%"
     },
     title: {
       fontWeight: "bold",

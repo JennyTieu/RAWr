@@ -1,25 +1,68 @@
-import React, {useContext, useLayoutEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import ReferenceList from '../components/ReferenceList';
 import { Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
 import {Ionicons} from "@expo/vector-icons";
+import { View ,StyleSheet} from 'react-native';
+import GridTileList from '../components/GridTileList';
 
 export default MarkedScreen = ({ route, navigation}) => {
-    useLayoutEffect(() => {
-        navigation.setOptions({
-          headerRight: () => (
-          <Button 
-            type="clear" 
-            icon={<Ionicons 
-              name="md-grid" 
-              size={30} />} 
-            onPress={() => {}}
-          />)
-        });
-      }, [navigation]);
-
+    
+    const [gridLayout, setGridLayout] = useState(false);
+    const layoutHandler = () =>{
+        setGridLayout(!gridLayout);
+    }
+    const layoutStyleIcon = gridLayout==true? 'md-list':'md-grid';
     const[referenceData] = useContext(ReferenceContext);
     const markedReferences = referenceData.referenceItems.filter(item => item.isMarked);
 
-    return <ReferenceList listData={markedReferences} navigation={navigation}/>;
-};
+    if(gridLayout===true){
+      return (
+        <View>
+          <View style={styles.topContainer}>
+            <Button type= "clear"
+                    icon={
+                      <Ionicons
+                        name={layoutStyleIcon}
+                        size={40}
+                        color="rgb(0, 122, 255)"
+                      />}
+                    onPress={layoutHandler} />
+          </View>
+          <View style={styles.middleContainer}>
+            <GridTileList listData={markedReferences} navigation={navigation}/>
+          </View>
+        </View>
+      );
+    }else{
+      return (
+            <View>
+              <View style={styles.topContainer}>
+                <Button type= "clear"
+                        icon={
+                          <Ionicons
+                            name={layoutStyleIcon}
+                            size={40}
+                            color="rgb(0, 122, 255)"
+                          />}
+                        onPress={layoutHandler} />
+              </View>
+              <View style={styles.middleContainer}>
+                <ReferenceList listData={markedReferences} navigation={navigation}/>
+              </View>
+            </View>
+          );
+    }
+    
+}
+const styles = StyleSheet.create({
+  topContainer: {
+    flexDirection: "row-reverse",
+    alignItems: "center",
+  },
+  middleContainer: {
+    width: "100%",
+    flexDirection: "row",
+    paddingBottom: 130,
+  },
+})
