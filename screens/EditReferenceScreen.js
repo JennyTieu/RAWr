@@ -186,14 +186,15 @@ const styles = StyleSheet.create({
     width: "100%"
   },
   text: {
+    fontSize: 16,
     alignSelf: "flex-start",
     fontWeight: "bold"
   },
   image: {
     height: 320,
     width: 320,
-    maxWidth: "90%",
-    maxHeight: "90%",
+    maxWidth: "95%",
+    maxHeight: "95%",
     alignItems:'center',
     justifyContent: 'center',
     backgroundColor: 'white',
