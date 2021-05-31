@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {View, TouchableWithoutFeedback, Keyboard, StyleSheet, TextInput, Text} from 'react-native';
+import {View, TouchableWithoutFeedback, Keyboard, StyleSheet, TextInput, Text, Image, ScrollView} from 'react-native';
 import { Button } from "react-native-elements";
 import {ReferenceContext} from '../data/ReferenceContext';
 import ReferenceItem from '../models/referenceItem';
@@ -16,6 +16,7 @@ export default EditReferenceScreen = ({route, navigation}) => {
   const itemTitle = route.params.itemTitle;
   const itemSource = route.params.itemSource;
   const itemNote = route.params.itemNote; 
+  const itemImage = route.params.itemImage; 
 
   const [valueMS, setValueMS] = useState(itemTagsIds);
   
@@ -82,60 +83,62 @@ export default EditReferenceScreen = ({route, navigation}) => {
  
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.screen}>
-        <View style={styles.topContainer}>      
-          <Text>Edit Reference Screen</Text>
-        </View>
-        <View style={styles.middleContainer}> 
-          <Text style={styles.text}>Change Title:</Text>
-          <TextInput
-            placeholder={itemTitle}
-            style={styles.inputBox}
-            underlineColorAndroid = "transparent"
-            autoCapitalize = "none"
-            onChangeText={changeTitleHandler}
-            value={titleInput}
-          />
-          <Text style={styles.text}>Change Source:</Text>
-          <TextInput
-            placeholder={itemSource}
-            style={styles.inputBox}
-            onChangeText={changeSourceHandler}
-            value={sourceInput}
-          />
-          <Text style={styles.text}>Change Note:</Text>
-          <TextInput
-            placeholder={itemNote}
-            style={styles.inputBox}
-            onChangeText={changeNoteHandler}
-            value={noteInput}
-          />
-          <View style={styles.container}>
-            <MultiselectDropdown
-              label="Tags"
-              data={referenceData.tags}
-              enableSearch
-              chipType="flat"
-              primaryColor="pink"
-              value={valueMS}
-              onChange={onChangeMS}
+      <ScrollView>
+        <View style={styles.screen}>
+          <View style={styles.topContainer}>      
+            <Image source={itemImage} style={styles.image}/>
+          </View>
+          <View style={styles.middleContainer}> 
+            <Text style={styles.text}>Change Title:</Text>
+            <TextInput
+              placeholder={itemTitle}
+              style={styles.inputBox}
+              underlineColorAndroid = "transparent"
+              autoCapitalize = "none"
+              onChangeText={changeTitleHandler}
+              value={titleInput}
+            />
+            <Text style={styles.text}>Change Source:</Text>
+            <TextInput
+              placeholder={itemSource}
+              style={styles.inputBox}
+              onChangeText={changeSourceHandler}
+              value={sourceInput}
+            />
+            <Text style={styles.text}>Change Note:</Text>
+            <TextInput
+              placeholder={itemNote}
+              style={styles.inputBox}
+              onChangeText={changeNoteHandler}
+              value={noteInput}
+            />
+            <View style={styles.dropdownContainer}>
+              <MultiselectDropdown
+                label="Tags"
+                data={referenceData.tags}
+                enableSearch
+                chipType="flat"
+                primaryColor="pink"
+                value={valueMS}
+                onChange={onChangeMS}
+              />
+            </View>
+          </View>
+          <View style={styles.bottomContainer}>
+            <Button
+              onPress={addHandler}
+              type="clear"
+              icon={
+                <Ionicons
+                  name="md-checkmark-circle-outline"
+                  size={32}
+                  color="rgb(0, 122, 255)"
+                />
+              }
             />
           </View>
         </View>
-        <View style={styles.bottomContainer}>
-          <Button
-            onPress={addHandler}
-            type="clear"
-            icon={
-              <Ionicons
-                name="md-checkmark-circle-outline"
-                size={32}
-                color="rgb(0, 122, 255)"
-              />
-            }
-          />
-        </View>
-      </View>
+        </ScrollView>
     </TouchableWithoutFeedback>
   );
 }
@@ -146,60 +149,56 @@ const styles = StyleSheet.create({
     backgroundColor: "#f1f2f6",
   },
   topContainer: {
-    flex: 1,
+    flex: 2,
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
   },
   middleContainer: {
-    flex: 5,
+    flex: 3,
     width: "90%",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "center",
+    marginTop: 20,
   },
   bottomContainer: {
     flex: 1,
     flexDirection: "column",
     justifyContent:"center",
     alignItems: "center",
-  },
-  title: {
-    fontWeight: "bold",
-    color: "#333",
+    marginTop: 10,
   },
   inputBox:{
     fontWeight: "bold",
     width: "100%",
-    margin: 15,
-    padding:10,
+    margin: 10,
+    padding: 10,
     alignItems: "center",
     borderColor: 'gray',
     borderWidth: 1
   },
-  verticalContainer: {
-    alignItems: "center",
-  },
-  buttonContainer:{
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-  },
-  container: {
-    paddingTop: 30,
-    marginLeft: 20,
-    marginRight: 20,
+  dropdownContainer: {
+    paddingTop: 15,
+    marginLeft: 15,
+    marginRight: 15,
     flex: 1,
     width: "100%"
-  },
-  buttonView: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'row',
-    marginTop: 10,
   },
   text: {
     alignSelf: "flex-start",
     fontWeight: "bold"
+  },
+  image: {
+    height: 320,
+    width: 320,
+    maxWidth: "90%",
+    maxHeight: "90%",
+    alignItems:'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    resizeMode:'contain',
+    borderRadius: 10,
+    marginTop: 20,
   }
 });
