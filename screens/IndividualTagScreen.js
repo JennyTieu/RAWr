@@ -64,7 +64,7 @@ export default IndividualTagScreen = ({route, navigation}) => {
       for (let j = 0; j < references[i].tagIds.length; j++) {
         if (references[i].tagIds[j] === tagId) {
           const image = references[i].image;
-          //setImageSource(image);
+          setImageSource(image);
           console.log(image);
         }
       }
