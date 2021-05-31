@@ -2,7 +2,6 @@ import React, {useContext, useState} from 'react';
 import {View, TouchableWithoutFeedback, Keyboard, StyleSheet, TextInput, Text, Image, ScrollView} from 'react-native';
 import { Button } from "react-native-elements";
 import {ReferenceContext} from '../data/ReferenceContext';
-import ReferenceItem from '../models/referenceItem';
 import { MultiselectDropdown} from 'sharingan-rn-modal-dropdown';
 import { Ionicons } from "@expo/vector-icons";
 

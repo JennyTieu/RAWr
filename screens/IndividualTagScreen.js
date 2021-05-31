@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import { View, Text, StyleSheet, TextInput, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TextInput, Image } from "react-native";
 import {ReferenceContext} from '../data/ReferenceContext';
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "react-native-elements";
@@ -8,8 +8,12 @@ export default IndividualTagScreen = ({route, navigation}) => {
 
   const[referenceData, setReferenceData] = useContext(ReferenceContext);
   const tags = referenceData.tags.filter(item => item.title);
+  const references = referenceData.referenceItems;
 
   const tagTitle = route.params.itemTitle;
+  const tagId = route.params.itemId;
+
+  const [imageSource, setImageSource] = useState();
 
   const [currentInput, setCurrentInput] = useState("");
 
@@ -56,7 +60,15 @@ export default IndividualTagScreen = ({route, navigation}) => {
   };
 
   const showMorePicsHandler = () => {
-
+    for (let i = 0; i < references.length; i++) {
+      for (let j = 0; j < references[i].tagIds.length; j++) {
+        if (references[i].tagIds[j] === tagId) {
+          const image = references[i].image;
+          //setImageSource(image);
+          console.log(image);
+        }
+      }
+    }
   };
 
   return (
@@ -94,10 +106,8 @@ export default IndividualTagScreen = ({route, navigation}) => {
           }
         />
       </View>
-      <View style={styles.fourthContainer}>
+      <View style={styles.imageContainer}>
         <Image style={styles.image} source={require('../data/artworks/ayceesky/meanyMadameRain.jpg')}/>
-        <Image style={styles.image} source={require('../data/artworks/for__infinity/48watercolor2.jpg')}/>
-        <Image style={styles.image} source={require('../data/artworks/for__infinity/demons.jpg')}/>
         <Button 
           onPress={showMorePicsHandler}
           type="solid"
@@ -154,12 +164,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  fourthContainer: {
+  imageContainer: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 10,
   },
   text: {
     fontSize: 20,
@@ -181,3 +190,9 @@ const styles = StyleSheet.create({
     height: 90,
   },
 });
+
+/*
+<Image style={styles.image} source={require('../data/artworks/ayceesky/meanyMadameRain.jpg')}/>
+<Image style={styles.image} source={require('../data/artworks/for__infinity/48watercolor2.jpg')}/>
+<Image style={styles.image} source={require('../data/artworks/for__infinity/demons.jpg')}/>
+*/
