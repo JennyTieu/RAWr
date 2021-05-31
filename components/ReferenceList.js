@@ -41,7 +41,10 @@ export default ReferenceList = (props) => {
         }));
     };
 
-    
+    const onEditHandler = (id, title, source, comment) => {
+        console.log(title + " " + id + " " + source + " " + comment);
+        props.navigation.navigate("EditReferenceScreen", {itemId : id, itemTitle : title, itemSource : source, itemNote : comment});
+    };
 
     const tagHandler = (tag) => {
         let tags=[];
@@ -76,6 +79,7 @@ export default ReferenceList = (props) => {
                             comment={itemData.item.comment}
                             source={itemData.item.source}
                             image={itemData.item.image}
+                            onEdit={onEditHandler}
                             onDelete={deleteHandler}
                             navigation={props.navigation}
                         />

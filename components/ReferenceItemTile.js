@@ -10,17 +10,14 @@ export default ReferenceItemTile = (props) => {
     const markedIconName = props.isMarked ? 'md-bookmark' : 'md-bookmark-outline';
     const usedIconName = props.isUsed ? 'md-checkmark-circle' : 'md-checkmark-circle-outline';
     
-
     const dataSource = props.tagIds;
 
-    
     const tagClickHandler = (title) => {
         props.navigation.navigate("IndividualTagScreen", {itemTitle : title});
     };
 
     return (
         
-
         <View style={styles.itemContainer}>
             
             
@@ -71,7 +68,7 @@ export default ReferenceItemTile = (props) => {
             </View>
             <View style={styles.buttonContainer}>
                 <Button 
-                    onPress={() => {}}
+                    onPress={() => {props.onEdit(props.id, props.title, props.source, props.comment)}}
                     type="clear"
                     title=' Edit'
                     icon={<AntDesign name='edit' size={24} color="rgb(0, 122, 255)"/>}
