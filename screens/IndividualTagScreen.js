@@ -154,13 +154,13 @@ export default IndividualTagScreen = ({route, navigation}) => {
                   <Image style={styles.image} source={imageSource[counterThirdPic]}/>
                   <Button 
                     onPress={showMorePicsHandler}
-                    type="solid"
+                    type="clear"
                     buttonStyle={styles.plusButton}
                     icon={
                       <Ionicons
-                        name="md-add"
-                        size={40}
-                        color="white"
+                        name="chevron-forward"
+                        size={38}
+                        color="rgb(0, 122, 255)"
                       />
                     }          
                   /> 
@@ -236,12 +236,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#8b0000",
   },
   plusButton: {
-    backgroundColor: "rgb(0, 122, 255)",
-    width: 90,
-    height: 90,
+    width: 50,
+    height: 100,
   },
   image: {
-    width: 90,
-    height: 90,
+    width: 95,
+    height: 95,
   },
 });

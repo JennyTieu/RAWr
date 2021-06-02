@@ -1,19 +1,43 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import {Button} from 'react-native-elements';
 import {Ionicons, FontAwesome5, AntDesign} from '@expo/vector-icons';
 import {Chip} from 'react-native-paper';
+import{ReferenceContext} from '../data/ReferenceContext';
 
 
 
 export default ReferenceItemTile = (props) => {
     const markedIconName = props.isMarked ? 'md-bookmark' : 'md-bookmark-outline';
     const usedIconName = props.isUsed ? 'md-checkmark-circle' : 'md-checkmark-circle-outline';
+    const[referenceData] = useContext(ReferenceContext);
+    let [tagId, setTagId] = useState();
     
     const dataSource = props.tagIds;
+    const tagImages = [];
+    const references = referenceData.referenceItems;
+    const tags = props.tags;
 
     const tagClickHandler = (title) => {
-        props.navigation.navigate("IndividualTagScreen", {itemTitle : title});
+
+        for (let k = 0; k < dataSource.length; k++) {
+            if (dataSource[k] === title) {
+                tagId = tags[k];
+                setTagId(tagId);
+            } 
+        }
+           
+        tagImages.length = 0;
+        for (let i = 0; i < references.length; i++) {
+            for (let j = 0; j < references[i].tagIds.length; j++) {
+                if (references[i].tagIds[j] === tagId) {
+                const image = references[i].image;
+                tagImages.push(image);
+                }
+            }
+        }
+        props.navigation.navigate("IndividualTagScreen", {itemTitle : title, tagImages : tagImages});
+        
     };
 
     return (
@@ -57,7 +81,14 @@ export default ReferenceItemTile = (props) => {
                             margin: 5,
                             flexWrap: 'wrap'
                             }}>
-                            <Chip key={index} mode="flat" height={30} textStyle={{  fontSize:15}} style={{backgroundColor:"gray"}} style={{alignItems: "center"}} onPress={()=> tagClickHandler(item)}>
+                            <Chip 
+                                key={index} 
+                                mode="flat" 
+                                height={30} 
+                                textStyle={{  fontSize:15}} style={{backgroundColor:"gray"}} 
+                                style={{alignItems: "center"}} 
+                                onPress={()=> tagClickHandler(item)}
+                            >
                                 {item}
                             </Chip>
                         </View>
