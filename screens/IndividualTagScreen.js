@@ -117,7 +117,7 @@ export default IndividualTagScreen = ({route, navigation}) => {
         />
       </View>
       <View>
-        <Text style={styles.imagesText}>References with this tag</Text>
+        <Text style={styles.imagesText}>References with this tag:</Text>
       </View>
       {images.length === 1 ?
         (
@@ -215,7 +215,8 @@ const styles = StyleSheet.create({
   },
   imagesText: {
     fontSize: 16,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    marginLeft: 5
   },
   imageContainer: {
     flex: 1,
