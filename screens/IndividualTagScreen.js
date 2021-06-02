@@ -116,6 +116,9 @@ export default IndividualTagScreen = ({route, navigation}) => {
           }
         />
       </View>
+      <View>
+        <Text style={styles.imagesText}>References with this tag</Text>
+      </View>
       {images.length === 1 ?
         (
           <View style={styles.imageContainer}>
@@ -210,18 +213,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
+  imagesText: {
+    fontSize: 16,
+    fontWeight: "bold"
+  },
   imageContainer: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
+    marginTop: 10
   },
   text: {
     fontSize: 20,
   },
   title: {
     color: "black",
-    fontSize: 22,
+    fontSize: 26,
   },
   button: {
     backgroundColor: "#8b0000",
