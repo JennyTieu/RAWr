@@ -22,8 +22,20 @@ export default TagScreen = ({ route, navigation}) => {
   const[referenceData] = useContext(ReferenceContext);
   const tags = referenceData.tags.filter(item => item.title);
 
-  const clickHandler = (id, title) => {
-    navigation.navigate("IndividualTagScreen", {itemTitle : title, itemId : id});
+  const references = referenceData.referenceItems;
+  const tagImages = [];
+
+  const clickHandler = (id, title, images) => {
+    tagImages.length = 0;
+    for (let i = 0; i < references.length; i++) {
+      for (let j = 0; j < references[i].tagIds.length; j++) {
+        if (references[i].tagIds[j] === id) {
+          const image = references[i].image;
+          tagImages.push(image);
+        }
+      }
+    }
+    navigation.navigate("IndividualTagScreen", {itemTitle : title, itemId : id, tagImages : tagImages});
   };
 
   return (

@@ -8,14 +8,16 @@ export default IndividualTagScreen = ({route, navigation}) => {
 
   const[referenceData, setReferenceData] = useContext(ReferenceContext);
   const tags = referenceData.tags.filter(item => item.title);
-  const references = referenceData.referenceItems;
 
   const tagTitle = route.params.itemTitle;
   const tagId = route.params.itemId;
+  const images = route.params.tagImages;
 
-  const [imageSource, setImageSource] = useState();
-
+  const [imageSource, setImageSource] = useState(images);
   const [currentInput, setCurrentInput] = useState("");
+  let [counterFirstPic, setCounterFirstPic] = useState(0);
+  let [counterSecondPic, setCounterSecondPic] = useState(1);
+  let [counterThirdPic, setCounterThirdPic] = useState(2);
 
   const deleteTextHandler = () => {
     if (currentInput === '') {
@@ -60,14 +62,22 @@ export default IndividualTagScreen = ({route, navigation}) => {
   };
 
   const showMorePicsHandler = () => {
-    for (let i = 0; i < references.length; i++) {
-      for (let j = 0; j < references[i].tagIds.length; j++) {
-        if (references[i].tagIds[j] === tagId) {
-          const image = references[i].image;
-          setImageSource(image);
-          console.log(image);
-        }
-      }
+    if (counterFirstPic+1 != images.length && counterSecondPic+1 != images.length && counterThirdPic+1 != images.length) {
+      setCounterFirstPic(counterFirstPic+1);
+      setCounterSecondPic(counterSecondPic+1);
+      setCounterThirdPic(counterThirdPic+1);
+    } else if (counterFirstPic+3 == images.length) {
+      setCounterFirstPic(counterFirstPic+1);
+      setCounterSecondPic(counterSecondPic+1);
+      setCounterThirdPic(0);
+    } else if (counterFirstPic+2 == images.length) {
+      setCounterFirstPic(counterFirstPic+1);
+      setCounterSecondPic(0);
+      setCounterThirdPic(1);
+    } else if (counterFirstPic+1 == images.length) {
+      setCounterFirstPic(0);
+      setCounterSecondPic(1);
+      setCounterThirdPic(2);
     }
   };
 
@@ -106,21 +116,57 @@ export default IndividualTagScreen = ({route, navigation}) => {
           }
         />
       </View>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={require('../data/artworks/ayceesky/meanyMadameRain.jpg')}/>
-        <Button 
-          onPress={showMorePicsHandler}
-          type="solid"
-          buttonStyle={styles.plusButton}
-          icon={
-            <Ionicons
-              name="md-add"
-              size={40}
-              color="rgb(0, 122, 255)"
-            />
-          }          
-        />
-      </View>
+      {images.length === 1 ?
+        (
+          <View style={styles.imageContainer}>
+            <Text>References marked by this tag</Text>
+            <Image style={styles.image} source={imageSource[0]}/> 
+          </View>
+        ) : (
+          images.length === 2 ? 
+          (
+            <View style={styles.imageContainer}>
+              <Image style={styles.image} source={imageSource[0]}/>
+              <Image style={styles.image} source={imageSource[1]}/>
+            </View>
+          ) : (
+            images.length === 3 ? (
+              <View style={styles.imageContainer}>
+                <Image style={styles.image} source={imageSource[0]}/>
+                <Image style={styles.image} source={imageSource[1]}/>
+                <Image style={styles.image} source={imageSource[2]}/> 
+              </View>
+            ) : (
+              images.length === 4 ? (
+                <View style={styles.imageContainer}>
+                <Image style={styles.image} source={imageSource[0]}/>
+                <Image style={styles.image} source={imageSource[1]}/>
+                <Image style={styles.image} source={imageSource[2]}/> 
+                <Image style={styles.image} source={imageSource[3]}/>
+              </View>
+              ) : (
+                <View style={styles.imageContainer}>
+                  <Image style={styles.image} source={imageSource[counterFirstPic]}/>
+                  <Image style={styles.image} source={imageSource[counterSecondPic]}/>
+                  <Image style={styles.image} source={imageSource[counterThirdPic]}/>
+                  <Button 
+                    onPress={showMorePicsHandler}
+                    type="solid"
+                    buttonStyle={styles.plusButton}
+                    icon={
+                      <Ionicons
+                        name="md-add"
+                        size={40}
+                        color="white"
+                      />
+                    }          
+                  /> 
+                </View>
+              )
+            )
+          )
+        )
+      } 
       <View style={styles.bottomContainer}>
         <Button 
           onPress={deleteTagHandler}
@@ -181,18 +227,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#8b0000",
   },
   plusButton: {
-    backgroundColor: "grey",
-    width: 90,
-    height: 90,
+    backgroundColor: "rgb(0, 122, 255)",
+    width: 95,
+    height: 95,
+    maxHeight: "95%",
+    maxWidth: "95%"
   },
   image: {
-    width: 90,
-    height: 90,
+    width: 95,
+    height: 95,
+    maxHeight: "95%",
+    maxWidth: "95%"
   },
 });
-
-/*
-<Image style={styles.image} source={require('../data/artworks/ayceesky/meanyMadameRain.jpg')}/>
-<Image style={styles.image} source={require('../data/artworks/for__infinity/48watercolor2.jpg')}/>
-<Image style={styles.image} source={require('../data/artworks/for__infinity/demons.jpg')}/>
-*/
