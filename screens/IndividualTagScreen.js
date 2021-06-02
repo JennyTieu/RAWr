@@ -222,7 +222,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 10
+    alignSelf:"center",
+    marginTop: 10,
   },
   text: {
     fontSize: 20,
@@ -236,15 +237,11 @@ const styles = StyleSheet.create({
   },
   plusButton: {
     backgroundColor: "rgb(0, 122, 255)",
-    width: 95,
-    height: 95,
-    maxHeight: "95%",
-    maxWidth: "95%"
+    width: 90,
+    height: 90,
   },
   image: {
-    width: 95,
-    height: 95,
-    maxHeight: "95%",
-    maxWidth: "95%"
+    width: 90,
+    height: 90,
   },
 });
