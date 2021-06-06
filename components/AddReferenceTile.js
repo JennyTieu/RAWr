@@ -200,7 +200,7 @@ export default AddReferenceTile = (props) => {
           icon={
             <Ionicons
               name="md-checkmark-circle-outline"
-              size={24}
+              size={30}
               color="rgb(0, 122, 255)"
             />
           }
@@ -214,6 +214,7 @@ export default AddReferenceTile = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    paddingHorizontal:10,
     backgroundColor: "#f1f2f6",
     alignItems: "center",
     justifyContent: "center",

@@ -20,7 +20,7 @@ export default MainNavigator = () => {
             } else if (route.name === 'Used') {
               iconName = focused ? 'md-book' : 'md-book-outline';
             } else if (route.name === 'Marked') {
-              iconName = focused ? 'md-star' : 'md-star-outline';
+              iconName = focused ? 'md-bookmark' : 'md-bookmark-outline';
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;

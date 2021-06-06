@@ -4,7 +4,7 @@ import {SearchBar, Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
 import GridTileImages from "../components/GridTileImages";
 import SearchScreen from "./SearchScreen";
-import {Ionicons} from "@expo/vector-icons";
+import {Ionicons, FontAwesome5} from "@expo/vector-icons";
 import GridTileList from '../components/GridTileList';
 
 export default HomeScreen = ({ route, navigation}) => {
@@ -14,8 +14,8 @@ export default HomeScreen = ({ route, navigation}) => {
       headerRight: () => (
       <Button 
         type="clear" 
-        icon={<Ionicons 
-          name="md-bookmark-outline" 
+        icon={<FontAwesome5 
+          name="hashtag" 
           size={30} />} 
         onPress={() => navigation.navigate("Tags")}
       />)

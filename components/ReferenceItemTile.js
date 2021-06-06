@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
     title: {
       fontWeight: "bold",
       color: "#333",
+      fontSize: 23
     },
     image:{
       height: 500,
