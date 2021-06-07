@@ -5,6 +5,7 @@ import {Ionicons} from '@expo/vector-icons';
 import MarkedNavigator from './MarkedNavigator';
 import UsedNavigator from './UsedNavigator';
 import HomeNavigator from './HomeNavigator';
+import Color from '../constants/Colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +28,7 @@ export default MainNavigator = () => {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          activeTintColor: Color.primary,
           inactiveTintColor: 'gray',
         }}
       >

@@ -6,6 +6,7 @@ import GridTileImages from "../components/GridTileImages";
 import SearchScreen from "./SearchScreen";
 import {Ionicons, FontAwesome5} from "@expo/vector-icons";
 import GridTileList from '../components/GridTileList';
+import Color from '../constants/Colors';
 
 export default HomeScreen = ({ route, navigation}) => {
 
@@ -16,7 +17,8 @@ export default HomeScreen = ({ route, navigation}) => {
         type="clear" 
         icon={<FontAwesome5 
           name="hashtag" 
-          size={30} />} 
+          size={30} 
+          color={Color.buttonTextColor}/>} 
         onPress={() => navigation.navigate("Tags")}
       />)
     });
@@ -58,7 +60,7 @@ export default HomeScreen = ({ route, navigation}) => {
         />
         <Button 
           type="clear"
-          icon={<Ionicons name="md-options-outline" size={30}/>}
+          icon={<Ionicons name="md-options-outline" size={30} color='grey'/>}
           onPress={searchHandler}
         />
       </View>
@@ -103,7 +105,7 @@ const styles = StyleSheet.create({
     right: 15,
     width: 60,
     height: 60,
-    backgroundColor: 'tomato',
+    backgroundColor: Color.iconColor,
     borderRadius: 100,
   },
 });

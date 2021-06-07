@@ -4,6 +4,7 @@ import {Button} from 'react-native-elements';
 import {Ionicons, FontAwesome5, AntDesign} from '@expo/vector-icons';
 import {Chip} from 'react-native-paper';
 import{ReferenceContext} from '../data/ReferenceContext';
+import Color from '../constants/Colors';
 
 
 
@@ -36,7 +37,7 @@ export default ReferenceItemTile = (props) => {
                 }
             }
         }
-        props.navigation.navigate("IndividualTagScreen", {itemTitle : title, tagImages : tagImages});
+        props.navigation.navigate("IndividualTag", {itemTitle : title, tagImages : tagImages});
         
     };
 
@@ -44,13 +45,12 @@ export default ReferenceItemTile = (props) => {
         
         <View style={styles.itemContainer}>
             
-            
             <View style={styles.buttonContainer}>
                 <Button 
                     onPress={() => {props.onMarked(props.id)}}
                     type= 'clear'
                     icon={
-                        <Ionicons name={markedIconName} size={24} color= 'rgb(0,122,255)' />
+                        <Ionicons name={markedIconName} size={30} color= {Color.iconColor} />
                     }
                 />
                 <Text style={styles.title}>{props.title}</Text>
@@ -58,7 +58,7 @@ export default ReferenceItemTile = (props) => {
                     onPress={() => {props.onUsed(props.id)}}
                     type= 'clear'
                     icon={
-                        <Ionicons name={usedIconName} size={24} color= 'rgb(0,122,255)' />
+                        <Ionicons name={usedIconName} size={30} color= {Color.iconColor} />
                     }
                 />
             </View>
@@ -85,8 +85,8 @@ export default ReferenceItemTile = (props) => {
                                 key={index} 
                                 mode="flat" 
                                 height={30} 
-                                textStyle={{  fontSize:15}} style={{backgroundColor:"gray"}} 
-                                style={{alignItems: "center"}} 
+                                textStyle={{  fontSize:15, color: "black"}} 
+                                style={{alignItems: "center",backgroundColor:Color.lightBackground}} 
                                 onPress={()=> tagClickHandler(item)}
                             >
                                 {item}
@@ -101,8 +101,7 @@ export default ReferenceItemTile = (props) => {
                 <Button 
                     onPress={() => {props.onEdit(props.id, props.title, props.source, props.comment, props.tags, props.image)}}
                     type="clear"
-                    title=' Edit'
-                    icon={<AntDesign name='edit' size={24} color="rgb(0, 122, 255)"/>}
+                    icon={<AntDesign name='edit' size={30} color={Color.iconColor}/>}
                 />
                 <Button
                     onPress={() => {props.onDelete(props.id)}}
@@ -110,8 +109,8 @@ export default ReferenceItemTile = (props) => {
                     icon={
                     <Ionicons
                         name="trash-sharp"
-                        size={24}
-                        color="rgb(0, 122, 255)"
+                        size={30}
+                        color={Color.iconColor}
                     />
                     }
                 />
@@ -128,7 +127,7 @@ const styles = StyleSheet.create({
         margin: 5,
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     buttonContainer:{
         flex: 1,
@@ -163,7 +162,7 @@ const styles = StyleSheet.create({
       width:'100%',
       alignItems:'center',
       justifyContent: 'center',
-      backgroundColor: 'black',
+      backgroundColor: "black",
       resizeMode:'contain',
     }
 });

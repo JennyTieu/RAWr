@@ -3,6 +3,7 @@ import { View, FlatList, StyleSheet } from "react-native";
 import {Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
 import {Ionicons} from "@expo/vector-icons";
+import Color from '../constants/Colors';
 
 export default TagScreen = ({ route, navigation}) => {
 
@@ -35,11 +36,11 @@ export default TagScreen = ({ route, navigation}) => {
         }
       }
     }
-    navigation.navigate("IndividualTagScreen", {itemTitle : title, itemId : id, tagImages : tagImages});
+    navigation.navigate("IndividualTag", { itemTitle : title, itemId : id, tagImages : tagImages});
   };
 
   return (
-    <View >
+    <View style={{backgroundColor: "#f7f7f7"}}>
       <FlatList
         data={tags}
         renderItem={(itemData) => {

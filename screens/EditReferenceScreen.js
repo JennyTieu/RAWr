@@ -4,6 +4,7 @@ import { Button } from "react-native-elements";
 import {ReferenceContext} from '../data/ReferenceContext';
 import { MultiselectDropdown} from 'sharingan-rn-modal-dropdown';
 import { Ionicons } from "@expo/vector-icons";
+import Color from '../constants/Colors';
 
 export default EditReferenceScreen = ({route, navigation}) => {
 
@@ -117,7 +118,7 @@ export default EditReferenceScreen = ({route, navigation}) => {
                 data={referenceData.tags}
                 enableSearch
                 chipType="flat"
-                primaryColor="pink"
+                primaryColor={Color.lightBackground}
                 value={valueMS}
                 onChange={onChangeMS}
               />
@@ -126,12 +127,15 @@ export default EditReferenceScreen = ({route, navigation}) => {
           <View style={styles.bottomContainer}>
             <Button
               onPress={addHandler}
-              type="clear"
+              type="solid"
+              title="Save"
+              titleStyle={styles.buttonText}
+              buttonStyle={styles.button}
               icon={
                 <Ionicons
                   name="md-checkmark-circle-outline"
                   size={32}
-                  color="rgb(0, 122, 255)"
+                  color="white"
                 />
               }
             />
@@ -163,10 +167,10 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     flex: 1,
-    flexDirection: "column",
     justifyContent:"center",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 20,
+    marginBottom:20
   },
   inputBox:{
     fontWeight: "bold",
@@ -189,6 +193,16 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     fontWeight: "bold"
   },
+  title: {
+    color: "black",
+    fontSize: 26,
+  },
+  button: {
+    backgroundColor: Color.iconColor,
+  },
+  buttonText: {
+    fontSize: 20,
+  },
   image: {
     height: 320,
     width: 320,
@@ -196,9 +210,8 @@ const styles = StyleSheet.create({
     maxHeight: "95%",
     alignItems:'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
     resizeMode:'contain',
-    borderRadius: 10,
     marginTop: 20,
+    backgroundColor:"white"
   }
 });

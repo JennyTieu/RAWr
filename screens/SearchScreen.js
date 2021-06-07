@@ -4,6 +4,7 @@ import {Button, Switch} from "react-native-elements";
 import {Ionicons} from "@expo/vector-icons";
 import{ReferenceContext} from '../data/ReferenceContext';
 import GridTileTags from "../components/GridTileTags";
+import Color from '../constants/Colors';
 
 export default SearchScreen = (props) => {
 
@@ -32,7 +33,7 @@ export default SearchScreen = (props) => {
             icon={<Ionicons name="md-return-down-back" size={34}/>}
             onPress={props.onCancelModal}
           />
-          <Text>Filter</Text>
+          <Text >Filter</Text>
         </View>
         <View style={styles.middleContainer}>
           <FlatList
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     margin: 30,
-    backgroundColor: "lightgrey",
+    backgroundColor: "#f7f7f7",
     borderRadius: 10
   },
   topContainer: {

@@ -26,7 +26,7 @@ export default UsedScreen = ({ route, navigation}) => {
                       <Ionicons
                         name={layoutStyleIcon}
                         size={40}
-                        color="rgb(0, 122, 255)"
+                        color="gray"
                       />}
                     onPress={layoutHandler} />
           </View>
@@ -44,7 +44,7 @@ export default UsedScreen = ({ route, navigation}) => {
                           <Ionicons
                             name={layoutStyleIcon}
                             size={40}
-                            color="rgb(0, 122, 255)"
+                            color="gray"
                           />}
                         onPress={layoutHandler} />
               </View>

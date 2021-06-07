@@ -5,6 +5,7 @@ import{ReferenceContext} from '../data/ReferenceContext';
 import {Ionicons} from "@expo/vector-icons";
 import { View ,StyleSheet} from 'react-native';
 import GridTileList from '../components/GridTileList';
+import Color from '../constants/Colors';
 
 export default MarkedScreen = ({ route, navigation}) => {
     
@@ -12,7 +13,7 @@ export default MarkedScreen = ({ route, navigation}) => {
     const layoutHandler = () =>{
         setGridLayout(!gridLayout);
     }
-    const layoutStyleIcon = gridLayout==true? 'md-list':'md-grid';
+    const layoutStyleIcon = gridLayout==true? 'md-grid-outline':'md-grid';
     const[referenceData] = useContext(ReferenceContext);
     const markedReferences = referenceData.referenceItems.filter(item => item.isMarked);
 
@@ -25,7 +26,7 @@ export default MarkedScreen = ({ route, navigation}) => {
                       <Ionicons
                         name={layoutStyleIcon}
                         size={40}
-                        color="rgb(0, 122, 255)"
+                        color={Color.primary}
                       />}
                     onPress={layoutHandler} />
           </View>
@@ -43,7 +44,7 @@ export default MarkedScreen = ({ route, navigation}) => {
                           <Ionicons
                             name={layoutStyleIcon}
                             size={40}
-                            color="rgb(0, 122, 255)"
+                            color={Color.primary}
                           />}
                         onPress={layoutHandler} />
               </View>
@@ -56,6 +57,7 @@ export default MarkedScreen = ({ route, navigation}) => {
     
 }
 const styles = StyleSheet.create({
+  
   topContainer: {
     flexDirection: "row-reverse",
     alignItems: "center",
