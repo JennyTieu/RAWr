@@ -5,14 +5,28 @@ import {Ionicons} from "@expo/vector-icons";
 import{ReferenceContext} from '../data/ReferenceContext';
 import GridTileTags from "../components/GridTileTags";
 
+
 export default SearchScreen = (props) => {
 
   const[referenceData] = useContext(ReferenceContext);
   const tags = referenceData.tags.filter(item => item.title);
+  const references = referenceData.referenceItems;
   const [modalVisible, setModalVisible] = useState(false);
 
-  const clickHandler = () => {
+  const referencesByTag = [];
 
+  const clickHandler = (id) => {
+    referencesByTag.length = 0;
+
+    for (let i = 0; i < references.length; i++) {
+      for (let j = 0; j < references[i].tagIds.length; j++) {
+        if (references[i].tagIds[j] === id) {
+          referencesByTag.push(references[i]);
+        }
+      }
+    }
+
+    console.log(referencesByTag);
   };
 
   return (
@@ -62,7 +76,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     margin: 30,
-    backgroundColor: "lightgrey",
+    backgroundColor: "#f7f7f7",
     borderRadius: 10
   },
   topContainer: {
