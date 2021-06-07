@@ -1,8 +1,9 @@
-import React, {useContext, useState} from "react";
+import React, {useLayoutEffect, useContext, useState} from "react";
 import { View, Text, StyleSheet, TextInput, Image } from "react-native";
 import {ReferenceContext} from '../data/ReferenceContext';
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "react-native-elements";
+import Color from '../constants/Colors';
 
 export default IndividualTagScreen = ({route, navigation}) => {
 
@@ -81,11 +82,14 @@ export default IndividualTagScreen = ({route, navigation}) => {
     }
   };
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: tagTitle,
+    });
+  }, [navigation]);
+
   return (
     <View style={styles.screenContainer}>
-      <View style={styles.topContainer}>
-        <Text style={styles.text}>Individual Tag Screen of {tagTitle}</Text>
-      </View>
       <View style={styles.middleContainer}>
         <Button
           onPress={deleteTextHandler}
@@ -94,7 +98,7 @@ export default IndividualTagScreen = ({route, navigation}) => {
             <Ionicons
               name="md-close-outline"
               size={32}
-              color="rgb(0, 122, 255)"
+              color={Color.iconColor}
             />
           }
         />
@@ -111,7 +115,7 @@ export default IndividualTagScreen = ({route, navigation}) => {
             <Ionicons
               name="md-pencil"
               size={32}
-              color="rgb(0, 122, 255)"
+              color={Color.iconColor}
             />
           }
         />
@@ -160,7 +164,7 @@ export default IndividualTagScreen = ({route, navigation}) => {
                       <Ionicons
                         name="chevron-forward"
                         size={38}
-                        color="rgb(0, 122, 255)"
+                        color={Color.iconColor}
                       />
                     }          
                   /> 
@@ -174,7 +178,7 @@ export default IndividualTagScreen = ({route, navigation}) => {
         <Button 
           onPress={deleteTagHandler}
           type="solid"
-          title="delete tag"
+          title="Delete Tag"
           titleStyle={styles.text}
           buttonStyle={styles.button}
           icon={
@@ -192,7 +196,8 @@ export default IndividualTagScreen = ({route, navigation}) => {
 
 const styles = StyleSheet.create({
   screenContainer: {
-    flex: 1,
+    height: "100%",
+    justifyContent:"space-evenly"
   },
   topContainer: {
     flex: 1,
@@ -200,8 +205,8 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   middleContainer: {
-    flex: 1,
     flexDirection: "row",
+    height:"20%",
     margin: 20,
     alignItems: "center",
     justifyContent: "space-between",
@@ -214,16 +219,18 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   imagesText: {
-    fontSize: 16,
+    fontSize: 20,
+    color: "black",
     fontWeight: "bold",
-    marginLeft: 5
+    marginLeft: 25,
+    marginTop: 10,
   },
   imageContainer: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     alignSelf:"center",
-    marginTop: 10,
+    marginTop: 20,
   },
   text: {
     fontSize: 20,
@@ -233,7 +240,7 @@ const styles = StyleSheet.create({
     fontSize: 26,
   },
   button: {
-    backgroundColor: "#8b0000",
+    backgroundColor: Color.iconColor,
   },
   plusButton: {
     width: 50,

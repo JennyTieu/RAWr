@@ -1,6 +1,6 @@
 export default {
     primary: '#98ddca',
-    accent: '#ffd3b4',
+    accent: '#fff2e8',
     lightBackground: '#d5ecc2',
     textColor: '#aaaaaa',
     iconColor: '#ffaaa7',

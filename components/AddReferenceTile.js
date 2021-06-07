@@ -7,6 +7,7 @@ import TAGS from '../data/dummy-data';
 import {ReferenceContext} from '../data/ReferenceContext';
 import * as ImagePicker from "expo-image-picker";
 import { MultiselectDropdown} from 'sharingan-rn-modal-dropdown';
+import Color from '../constants/Colors';
 
 export default AddReferenceTile = (props) => {
 
@@ -126,11 +127,11 @@ export default AddReferenceTile = (props) => {
       <View style={styles.screen}>
         <View style={styles.topContainer}>
             
-            <View style={[styles.cameraPreview]}>
+            <View style={[styles.cameraPreviewBlank]}>
               {selectedImage === null?(
                 <Image
                   source={require("../assets/addRef.png")}
-                  style={styles.cameraPreview}
+                  style={styles.cameraPreviewBlank}
                 />
               ) : (
                 <TouchableOpacity onPress={() => setSelectedImage(null)}>
@@ -147,7 +148,7 @@ export default AddReferenceTile = (props) => {
                   <Ionicons
                     name="md-images"
                     size={60}
-                    color="rgb(0, 122, 255)"
+                    color={Color.primary}
                   />}
                 onPress={showImagePicker} />
             <Button type= "clear" 
@@ -155,7 +156,7 @@ export default AddReferenceTile = (props) => {
                 <Ionicons
                   name="md-camera"
                   size={60}
-                  color="rgb(0, 122, 255)"
+                  color={Color.primary}
                 />} 
               onPress={openCamera} />
             </View>
@@ -188,7 +189,7 @@ export default AddReferenceTile = (props) => {
             data={referenceData.tags}
             enableSearch
             chipType="flat"
-            primaryColor="pink"
+            primaryColor={Color.lightBackground}
             value={valueMS}
             onChange={onChangeMS}
           />
@@ -196,12 +197,15 @@ export default AddReferenceTile = (props) => {
 
         <Button
           onPress={addHandler}
-          type="clear"
+          type="solid"
+          title="Add Reference"
+          titleStyle={styles.buttonText}
+          buttonStyle={styles.button}
           icon={
             <Ionicons
               name="md-checkmark-circle-outline"
               size={30}
-              color="rgb(0, 122, 255)"
+              color="white"
             />
           }
         />
@@ -219,15 +223,30 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  topContainer: {
+    flex: 2,
+    justifyContent: "center",
+    alignSelf: "center",
+  },
   bottomContainer: {
     flexDirection: "column",
     justifyContent:"center",
     alignItems: "center",
   },
   cameraPreview: {
-    width: 300,
-    height: 300,
-    resizeMode: "contain"
+    width: 320,
+    height: 320,
+    alignItems:'center',
+    justifyContent: 'center',
+    resizeMode: "contain",
+    backgroundColor:"white"
+  },
+  cameraPreviewBlank: {
+    width: 320,
+    height: 320,
+    alignItems:'center',
+    justifyContent: 'center',
+    resizeMode: "contain",
   },
   itemContainer: {
     flex: 1,
@@ -262,11 +281,18 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   container: {
-    paddingTop: 30,
+    paddingTop: 20,
+    paddingBottom:30,
     marginLeft: 20,
     marginRight: 20,
     flex: 1,
     width: "100%"
+  },
+  button: {
+    backgroundColor: Color.iconColor,
+  },
+  buttonText: {
+    fontSize: 20,
   },
   buttonView: {
     display: 'flex',

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, View, Text } from "react-native";
+import Color from '../constants/Colors';
 
 export default GridTileTags = props => {
   return (
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     height: 45,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "white",
+    backgroundColor: Color.lightBackground,
     borderRadius: 30,
   },
   gridText: {
