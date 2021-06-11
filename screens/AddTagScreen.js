@@ -77,7 +77,7 @@ export default TagScreen = ({ route, navigation}) => {
         />
       </View>
       <View style={styles.bottomContainer}>
-        <Text style={styles.text}>bottom Container</Text>
+        <Text style={styles.text}></Text>
       </View>
     </View>     
   );

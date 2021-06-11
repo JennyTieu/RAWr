@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: "white",
     borderRadius: 10,
+    marginTop: 60
   },
   bottomContainer: {
     flex: 1,
