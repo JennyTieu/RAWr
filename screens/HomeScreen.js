@@ -25,8 +25,9 @@ export default HomeScreen = ({ route, navigation}) => {
   }, [navigation]);
 
   const[referenceData] = useContext(ReferenceContext);
-  const allReferences = referenceData.referenceItems;
+  const [allReferences, setReferences] = useState(referenceData.referenceItems);
   const [showSearchScreen, setShowSearchScreen] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const clickHandler = (id) => {
     navigation.navigate("Reference", {itemId : id});
@@ -44,19 +45,23 @@ export default HomeScreen = ({ route, navigation}) => {
     navigation.navigate("AddReference");
   };
 
+
   return (
     //<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     <View>
       <SearchScreen 
           visible={showSearchScreen}
           onCancelModal={cancelModalHandler}
+          list={allReferences}
       />
       <View style={styles.topContainer}>
         <SearchBar 
           placeholder="search ..."
+          autoCorrect={false}
+          value={searchText}
           containerStyle= {styles.searchBar}
           lightTheme="true"
-          onChangeText= {() => {return <SearchScreen />}}
+          onChangeText={(val) => setSearchText(val)}
         />
         <Button 
           type="clear"
@@ -64,7 +69,7 @@ export default HomeScreen = ({ route, navigation}) => {
           onPress={searchHandler}
         />
       </View>
-      <View  style={styles.middleContainer}>
+      <View style={styles.middleContainer}>
         <GridTileList listData={allReferences} navigation={navigation}/>
       </View>
       <TouchableOpacity 
