@@ -49,6 +49,7 @@ export default TagScreen = ({ route, navigation}) => {
               onClick={clickHandler}
               title={itemData.item.title}
               id={itemData.item.id}
+              backgCol={Color.lightBackground}
             />
           )
         }}
