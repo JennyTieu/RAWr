@@ -1,14 +1,16 @@
 import React, {useContext, useState} from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, FlatList } from "react-native";
 import Tag from "../models/tag";
 import { ReferenceContext } from "../data/ReferenceContext";
 import { Button } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
+import Color from '../constants/Colors';
 
 export default TagScreen = ({ route, navigation}) => {
 
   const [referenceData, setReferenceData] = useContext(ReferenceContext);
   const {tagId} = referenceData.tags.filter(item => item.id);
+  const tags = referenceData.tags.filter(item => item.title);
 
   const [currentInput, setCurrentInput] = useState("");
 
@@ -44,7 +46,7 @@ export default TagScreen = ({ route, navigation}) => {
   return (
     <View style={styles.screenContainer}>
       <View style={styles.topContainer}>
-        <Text style={styles.text}>Add Tag Screen</Text>
+        <Text style={styles.text}>Enter the title {"\n"}of your new tag here</Text>
       </View>
       <View style={styles.middleContainer}>
         <Button
@@ -54,7 +56,7 @@ export default TagScreen = ({ route, navigation}) => {
             <Ionicons
               name="md-close-outline"
               size={32}
-              color="rgb(0, 122, 255)"
+              color={Color.iconColor}
             />
           }
         />
@@ -71,13 +73,21 @@ export default TagScreen = ({ route, navigation}) => {
             <Ionicons
               name="md-add"
               size={32}
-              color="rgb(0, 122, 255)"
+              color={Color.iconColor}
             />
           }
         />
       </View>
       <View style={styles.bottomContainer}>
-        <Text style={styles.text}></Text>
+        <Text style={styles.allTagsText}>All tags:</Text>
+        <FlatList horizontal
+          data={tags}
+          renderItem={(itemData) => {
+            return (
+              <Text style={styles.tags}>{itemData.item.title}</Text>
+            )
+          }}
+        />
       </View>
     </View>     
   );
@@ -88,26 +98,32 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   topContainer: {
-    flex: 2,
+    flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginLeft: 20,
+    marginRight: 20,
   },
   middleContainer: {
     flex: 1,
     flexDirection: "row",
-    margin: 20,
+    marginLeft: 20,
+    marginRight: 20,
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "white",
     borderRadius: 10,
+    marginBottom: 20
   },
   bottomContainer: {
-    flex: 2,
-    alignItems: "center",
-    justifyContent: "center"
-  },
+    flex: 1,
+    marginLeft: 20,
+    marginRight: 20,
+  }, 
   text: {
     fontSize: 20,
+    textAlign: "center",
+    color: Color.textColor
   },
   title: {
     color: "black",
@@ -115,5 +131,18 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#8b0000",
+  },
+  tags: {
+    alignSelf:"center",
+    fontSize: 22,
+    margin: 5,
+    padding: 7,
+    backgroundColor: Color.lightBackground,
+    borderRadius: 10,
+  },
+  allTagsText: {
+    alignSelf: "flex-start",
+    textAlign: "left",
+    color: "black",
   }
 });

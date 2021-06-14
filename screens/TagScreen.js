@@ -4,6 +4,7 @@ import {Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
 import {Ionicons} from "@expo/vector-icons";
 import Color from '../constants/Colors';
+import GridTileTags from "../components/GridTileTags";
 
 export default TagScreen = ({ route, navigation}) => {
 
