@@ -46,7 +46,7 @@ export default TagScreen = ({ route, navigation}) => {
   return (
     <View style={styles.screenContainer}>
       <View style={styles.topContainer}>
-        <Text style={styles.text}>Enter the title {"\n"}of your new tag here</Text>
+        <Text style={styles.text}>Enter the title {"\n"}of your new tag below</Text>
       </View>
       <View style={styles.middleContainer}>
         <Button
