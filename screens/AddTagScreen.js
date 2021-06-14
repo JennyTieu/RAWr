@@ -46,7 +46,7 @@ export default TagScreen = ({ route, navigation}) => {
   return (
     <View style={styles.screenContainer}>
       <View style={styles.topContainer}>
-        <Text style={styles.text}>Enter the title {"\n"}of your new tag below</Text>
+        <Text style={styles.descriptionText}>Enter the title {"\n"}of your new tag below</Text>
       </View>
       <View style={styles.middleContainer}>
         <Button
@@ -62,7 +62,7 @@ export default TagScreen = ({ route, navigation}) => {
         />
         <TextInput
           placeholder="enter title"
-          style={styles.title}
+          style={styles.enterTitleText}
           onChangeText={changeTextHandler}
           value={currentInput}
         />
@@ -79,12 +79,20 @@ export default TagScreen = ({ route, navigation}) => {
         />
       </View>
       <View style={styles.bottomContainer}>
-        <Text style={styles.allTagsText}>All tags:</Text>
+        <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+          <Text style={styles.allTagsText}>All tags:</Text>
+          <Ionicons
+            style={{textAlign: "right"}}
+            name="chevron-forward"
+            size={24}
+            color={Color.iconColor}
+          />
+        </View>
         <FlatList horizontal
           data={tags}
           renderItem={(itemData) => {
             return (
-              <Text style={styles.tags}>{itemData.item.title}</Text>
+              <Text style={styles.tagStyle}>{itemData.item.title}</Text>
             )
           }}
         />
@@ -112,27 +120,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 15,
     marginBottom: 20
   },
   bottomContainer: {
     flex: 1,
+    justifyContent: "center",
     marginLeft: 20,
     marginRight: 20,
   }, 
-  text: {
+  descriptionText: {
     fontSize: 20,
     textAlign: "center",
     color: Color.textColor
   },
-  title: {
-    color: "black",
+  enterTitleText: {
     fontSize: 22,
   },
-  button: {
-    backgroundColor: "#8b0000",
-  },
-  tags: {
+  tagStyle: {
     alignSelf:"center",
     fontSize: 22,
     margin: 5,
@@ -141,8 +146,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   allTagsText: {
-    alignSelf: "flex-start",
+    fontSize: 17,
     textAlign: "left",
     color: "black",
-  }
+  },
 });
