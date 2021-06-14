@@ -187,7 +187,7 @@ export default HomeScreen = ({ route, navigation}) => {
         />
         <Button 
           type="clear"
-          icon={searchValue === true ? <Ionicons name="md-search" size={22} color='grey'/> : <Ionicons name="md-close" size={22} color='grey'/>}
+          icon={searchValue === true ? <Ionicons name="md-search" size={22} color='grey'/> : <Ionicons name="md-arrow-undo-outline" size={22} color='grey'/>}
           onPress={searchValue === true ? searchHandler : quitSearchHandler}
         />
         <Button 
