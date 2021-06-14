@@ -6,7 +6,6 @@ import {Ionicons, FontAwesome5} from "@expo/vector-icons";
 import GridTileList from '../components/GridTileList';
 import Color from '../constants/Colors';
 import Modal from 'react-native-modal';
-import GridTileTags from '../components/GridTileTags';
 import { MultiselectDropdown} from 'sharingan-rn-modal-dropdown';
 
 export default HomeScreen = ({ route, navigation}) => {
