@@ -222,7 +222,7 @@ export default HomeScreen = ({ route, navigation}) => {
           onPress={filterHandler}
         />
       </View>
-      {searchValue === false && <Text style={{alignSelf: "center"}}>- {referencesSearchBar.length} results -</Text>}
+      {searchValue === false && <Text style={{alignSelf: "center"}}>- {allReferences.length} results -</Text>}
       {filterResultValue === true && <Text style={{alignSelf: "center"}}>- {lengthRefsByTag} results -</Text>}
       <View style={styles.middleContainer}>
         <GridTileList listData={allReferences} navigation={navigation}/>
@@ -230,9 +230,9 @@ export default HomeScreen = ({ route, navigation}) => {
       <TouchableOpacity 
           style={styles.floatingButton}
           onPress={addReferenceHandler}
-        >
-          <Ionicons name="md-add" size={40} color="white" />
-        </TouchableOpacity>
+      >
+        <Ionicons name="md-add" size={40} color="white" />
+      </TouchableOpacity>
     </View>
   );
 }
