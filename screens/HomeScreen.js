@@ -36,6 +36,7 @@ export default HomeScreen = ({ route, navigation}) => {
 
   let referencesByTag = [];
   let referencesSearchBar = [];
+  let sortetReferences = [{id: "3", title: "c", note: "a"}, {id: "2", title: "b", note: "b"}, {id: "1", title: "a", note: "c"}];
 
   //Oeffnet das Fenster des Filter, zum Suchen nach bestimmten Tags und Ausblenden der used References
   const filterHandler = () => {
@@ -109,12 +110,21 @@ export default HomeScreen = ({ route, navigation}) => {
     }
   };
 
+  //wendet den Suchbegriff der Searchbar an
   const searchHandler = () => {
     setReferences(referencesSearchBar);
     setSearchValue(false);
   };
 
+  //beendet die Suche durch die SearchBar
   const quitSearchHandler = () => {
+    setReferences(referenceData.referenceItems);
+    setSearchValue(true);
+  };
+
+  //loescht den aktuellen inhalt der searchBar und setzt Suche zurueck
+  const clearSearchBarHandler = () => {
+    setSearchText("");
     setReferences(referenceData.referenceItems);
     setSearchValue(true);
   };
@@ -176,7 +186,7 @@ export default HomeScreen = ({ route, navigation}) => {
       <View style={styles.topContainer}>
         <Button 
           type="clear"
-          icon={searchValue === true ? <Ionicons name="md-search" size={22} color='grey'/> : <Ionicons name="md-arrow-undo-outline" size={22} color='grey'/>}
+          icon={searchValue === true ? <Ionicons name="md-search" size={20} color='grey'/> : <Ionicons name="md-arrow-undo-outline" size={22} color='grey'/>}
           onPress={searchValue === true ? searchHandler : quitSearchHandler}
         />
         <SearchBar 
@@ -188,10 +198,11 @@ export default HomeScreen = ({ route, navigation}) => {
           searchIcon={false}
           onChangeText={(val) => setSearchText(val)}
           onSubmitEditing={searchBarHandler(searchText)}
+          onClear={clearSearchBarHandler}
         />
         <Button 
           type="clear"
-          icon={<Ionicons name="md-options-outline" size={30} color='grey'/>}
+          icon={<Ionicons name="md-options-outline" size={26} color='grey'/>}
           onPress={filterHandler}
         />
       </View>
