@@ -1,10 +1,12 @@
 import React, {useContext} from 'react';
 import{View, FlatList} from 'react-native';
-import ReferenceItemTile from './ReferenceItemTile';
+import ReferenceItemTile from '../components/ReferenceItemTile';
 import {ReferenceContext} from '../data/ReferenceContext';
 
-export default ReferenceList = (props) => {
-    const[referenceData, setReferenceData] = useContext(ReferenceContext);
+export default ReferenceScreen = ({route, navigation}) => {
+    const [referenceData,setReferenceData] = useContext(ReferenceContext);
+    const {itemId} = route.params;
+    const selectedReference = referenceData.referenceItems.filter(item => item.id === itemId);
 
     const deleteHandler = (id) => {
         setReferenceData(referenceData => ({
@@ -13,6 +15,7 @@ export default ReferenceList = (props) => {
             idCounterTags: referenceData.idCounterTags,
             idCounterReferences: referenceData.idCounterReferences
         }));
+        navigation.goBack();
     };
 
     const markedHandler = (id) => {
@@ -40,7 +43,7 @@ export default ReferenceList = (props) => {
     };
 
     const onEditHandler = (id, title, source, comment, tags, image) => {
-        props.navigation.navigate("EditReference", {itemId : id, itemTitle : title, itemSource : source, itemNote : comment, itemTags : tags, itemImage: image});
+        navigation.navigate("EditReference", {itemId : id, itemTitle : title, itemSource : source, itemNote : comment, itemTags : tags, itemImage: image});
     };
 
     const tagHandler = (tag) => {
@@ -58,10 +61,10 @@ export default ReferenceList = (props) => {
         return tags;
     };
 
-    return(
+    return (
         <View style={{ flex:1}}>
             <FlatList
-                data={props.listData}
+                data={selectedReference}
                 keyExtractor={(item, index) => item.id}
                 renderItem={(itemData) =>{
                     return(
@@ -79,7 +82,7 @@ export default ReferenceList = (props) => {
                             image={itemData.item.image}
                             onEdit={onEditHandler}
                             onDelete={deleteHandler}
-                            navigation={props.navigation}
+                            navigation={navigation}
                         />
                     );
                 }}
@@ -88,4 +91,5 @@ export default ReferenceList = (props) => {
             />
         </View>
     )
+    //<ReferenceList listData={selectedReference} navigation={navigation}/>;
 }

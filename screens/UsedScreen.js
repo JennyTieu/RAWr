@@ -13,7 +13,7 @@ export default UsedScreen = ({ route, navigation}) => {
     const layoutHandler = () =>{
         setGridLayout(!gridLayout);
     }
-    const layoutStyleIcon = gridLayout==true? 'md-list':'md-grid';
+    const layoutStyleIcon = gridLayout==true? 'md-grid-outline':'md-grid';
     const[referenceData] = useContext(ReferenceContext);
     const usedReferences = referenceData.referenceItems.filter(item => item.isUsed);
 

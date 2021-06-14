@@ -13,7 +13,7 @@ export default MarkedScreen = ({ route, navigation}) => {
     const layoutHandler = () =>{
         setGridLayout(!gridLayout);
     }
-    const layoutStyleIcon = gridLayout==true? 'md-list':'md-grid';
+    const layoutStyleIcon = gridLayout==true? 'md-grid-outline':'md-grid';
     const[referenceData] = useContext(ReferenceContext);
     const markedReferences = referenceData.referenceItems.filter(item => item.isMarked);
 

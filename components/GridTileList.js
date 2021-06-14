@@ -5,7 +5,7 @@ import {ReferenceContext} from '../data/ReferenceContext';
 
 export default GridTileList = (props) => {
     const clickHandler = (id) => {
-        props.navigation.navigate("Reference", {itemId : id});
+        props.navigation.navigate("IndividualReference", {itemId : id});
       };
 
     return(
