@@ -33,6 +33,8 @@ export default HomeScreen = ({ route, navigation}) => {
   const references = referenceData.referenceItems;
   const [valueMS, setValueMS] = useState([]);
   const [searchValue, setSearchValue] = useState(true);
+  const [filterResultValue, setfilterResultValue] = useState(false);
+  const [lengthRefsByTag, setLengthRefsByTag] = useState();
 
   let referencesByTag = [];
   let referencesSearchBar = [];
@@ -58,6 +60,7 @@ export default HomeScreen = ({ route, navigation}) => {
     setSwitchValue(false);
     setValueMS([]);
     setReferences(referenceData.referenceItems);
+    setfilterResultValue(false);
   };
 
   const onChangeMS = (value) => {
@@ -86,10 +89,12 @@ export default HomeScreen = ({ route, navigation}) => {
         referencesByTag = references.filter((item) => item.isUsed !== true);
         setReferences(referencesByTag);
         setShowFilterScreen(false);
+        setLengthRefsByTag(referencesByTag.length);
       } else {
         referencesByTag = referencesByTag.filter((item) => item.isUsed !== true);
         setReferences(referencesByTag);
         setShowFilterScreen(false);
+        setLengthRefsByTag(referencesByTag.length);
       }
     } else {
       if (referencesByTag.length === 0) {
@@ -97,8 +102,10 @@ export default HomeScreen = ({ route, navigation}) => {
       } else {
         setReferences(referencesByTag);
         setShowFilterScreen(false);
+        setLengthRefsByTag(referencesByTag.length);
       }
     }
+    setfilterResultValue(true);
   };
 
   //Betaetigung des Switches im FilterScreen
@@ -216,6 +223,7 @@ export default HomeScreen = ({ route, navigation}) => {
         />
       </View>
       {searchValue === false && <Text style={{alignSelf: "center"}}>- {referencesSearchBar.length} results -</Text>}
+      {filterResultValue === true && <Text style={{alignSelf: "center"}}>- {lengthRefsByTag} results -</Text>}
       <View style={styles.middleContainer}>
         <GridTileList listData={allReferences} navigation={navigation}/>
       </View>
