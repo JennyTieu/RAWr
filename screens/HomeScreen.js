@@ -146,7 +146,7 @@ export default HomeScreen = ({ route, navigation}) => {
             onChange={onChangeMS}
           />
         </View>
-        <View style={{flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
+        <View style={styles.modalSwitchContainer}>
           <Switch 
             style={styles.switch} 
             trackColor={{ false: "lightgrey", true: Color.primary }}
@@ -175,6 +175,11 @@ export default HomeScreen = ({ route, navigation}) => {
       </Modal>
 
       <View style={styles.topContainer}>
+        <Button 
+          type="clear"
+          icon={searchValue === true ? <Ionicons name="md-search" size={22} color='grey'/> : <Ionicons name="md-arrow-undo-outline" size={22} color='grey'/>}
+          onPress={searchValue === true ? searchHandler : quitSearchHandler}
+        />
         <SearchBar 
           placeholder="search ..."
           autoCorrect={false}
@@ -184,11 +189,6 @@ export default HomeScreen = ({ route, navigation}) => {
           searchIcon={false}
           onChangeText={(val) => setSearchText(val)}
           onSubmitEditing={searchBarHandler(searchText)}
-        />
-        <Button 
-          type="clear"
-          icon={searchValue === true ? <Ionicons name="md-search" size={22} color='grey'/> : <Ionicons name="md-arrow-undo-outline" size={22} color='grey'/>}
-          onPress={searchValue === true ? searchHandler : quitSearchHandler}
         />
         <Button 
           type="clear"
@@ -251,20 +251,35 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     marginLeft: 20,
+    marginRight: 20,
     justifyContent: "space-between",
     alignItems: "center",
+    borderBottomWidth: 1
   },
   modalMiddleContainer: {
     flex: 2,
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 20,
+    marginRight: 20,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: Color.accent
+  },
+  modalSwitchContainer: {
+    flex: 1, 
+    flexDirection: "row", 
+    marginLeft: 20,
+    marginRight: 20,
+    justifyContent: "center", 
+    alignItems: "center", 
+    backgroundColor: Color.accent
   },
   modalBottomContainer: {
     flex: 2,
-    justifyContent: "center"
+    justifyContent: "center",
+    borderTopWidth: 1,
+    marginRight: 20,
+    marginLeft: 20
   },
   switch: {
     transform:[{ scaleX: 1.2 }, { scaleY: 1.2 }]
