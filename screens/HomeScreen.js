@@ -36,7 +36,6 @@ export default HomeScreen = ({ route, navigation}) => {
 
   let referencesByTag = [];
   let referencesSearchBar = [];
-  let sortetReferences = [{id: "3", title: "c", note: "a"}, {id: "2", title: "b", note: "b"}, {id: "1", title: "a", note: "c"}];
 
   //Oeffnet das Fenster des Filter, zum Suchen nach bestimmten Tags und Ausblenden der used References
   const filterHandler = () => {
@@ -67,11 +66,17 @@ export default HomeScreen = ({ route, navigation}) => {
 
   //wendet den Filter an
   const modalApplyHandler = () => {
+    let doubleCheck = false;
     
-    for (let j = 0; j < references.length; j++) {
-      for (let i = 0; i < valueMS.length; i++) {
+    for (let i = 0; i < valueMS.length; i++) {
+      for (let j = 0; j < references.length; j++) {
         if (references[j].tagIds.includes(valueMS[i])) {
-          referencesByTag.push(references[j]);
+          if (referencesByTag.includes(references[j])) {
+            doubleCheck = true;
+          } else {
+            doubleCheck = false;
+          }
+          if (doubleCheck === false) referencesByTag.push(references[j]);
         }
       }
     }
@@ -79,17 +84,21 @@ export default HomeScreen = ({ route, navigation}) => {
     if (switchValue) {
       if (referencesByTag.length === 0) {
         referencesByTag = references.filter((item) => item.isUsed !== true);
+        setReferences(referencesByTag);
       } else {
         referencesByTag = referencesByTag.filter((item) => item.isUsed !== true);
+        setReferences(referencesByTag);
+      }
+    } else {
+      if (referencesByTag.length === 0) {
+        setShowFilterScreen(false);
+      } else {
+        setReferences(referencesByTag);
+        setShowFilterScreen(false);
       }
     }
 
-    if (!switchValue && referencesByTag.length === 0) {
-      setShowFilterScreen(false);
-    } else {
-      setReferences(referencesByTag);
-      setShowFilterScreen(false);
-    }
+    console.log(referencesByTag.length);
   };
 
   //Betaetigung des Switches im FilterScreen
@@ -206,6 +215,7 @@ export default HomeScreen = ({ route, navigation}) => {
           onPress={filterHandler}
         />
       </View>
+      {searchValue === false && <Text style={{alignSelf: "center"}}>- {referencesSearchBar.length} results -</Text>}
       <View style={styles.middleContainer}>
         <GridTileList listData={allReferences} navigation={navigation}/>
       </View>
