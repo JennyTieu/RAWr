@@ -85,9 +85,11 @@ export default HomeScreen = ({ route, navigation}) => {
       if (referencesByTag.length === 0) {
         referencesByTag = references.filter((item) => item.isUsed !== true);
         setReferences(referencesByTag);
+        setShowFilterScreen(false);
       } else {
         referencesByTag = referencesByTag.filter((item) => item.isUsed !== true);
         setReferences(referencesByTag);
+        setShowFilterScreen(false);
       }
     } else {
       if (referencesByTag.length === 0) {
@@ -97,8 +99,6 @@ export default HomeScreen = ({ route, navigation}) => {
         setShowFilterScreen(false);
       }
     }
-
-    console.log(referencesByTag.length);
   };
 
   //Betaetigung des Switches im FilterScreen
