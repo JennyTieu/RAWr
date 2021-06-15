@@ -63,7 +63,7 @@ export default ReferenceScreen = ({route, navigation}) => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-          headerTitle: selectedReference[0].title,
+          headerTitle: "",
         });
       }, [navigation]);
     
