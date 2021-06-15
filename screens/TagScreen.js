@@ -16,7 +16,7 @@ export default TagScreen = ({ route, navigation}) => {
         icon={<Ionicons 
           name="md-add" 
           size={30} />} 
-        onPress={() => navigation.navigate("AddTag")}
+        onPress={() => navigation.navigate("Add Tag")}
       />)
     });
   }, [navigation]);

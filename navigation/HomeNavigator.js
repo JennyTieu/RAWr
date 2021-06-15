@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import TagScreen from "../screens/TagScreen";
 import AddTagScreen from "../screens/AddTagScreen";
-import ReferenceScreen from "../screens/ReferenceScreen";
 import AddReferenceScreen from "../screens/AddReferenceScreen";
 import IndividualTagScreen from "../screens/IndividualTagScreen";
 import EditReferenceScreen from "../screens/EditReferenceScreen";
@@ -25,12 +24,11 @@ export default HomeNavigator = () => {
     }}>
       <HomeStack.Screen name="Home" component={HomeScreen}/>
       <HomeStack.Screen name="Tags" component={TagScreen}/>
-      <HomeStack.Screen name="AddTag" component={AddTagScreen}/>
-      <HomeStack.Screen name="Reference" component={ReferenceScreen}/>
+      <HomeStack.Screen name="Add Tag" component={AddTagScreen}/>
       <HomeStack.Screen name="IndividualReference" component={IndividualReferenceScreen}/>
-      <HomeStack.Screen name="AddReference" component={AddReferenceScreen}/>
+      <HomeStack.Screen name="Add Reference" component={AddReferenceScreen}/>
       <HomeStack.Screen name="IndividualTag" component={IndividualTagScreen}/>
-      <HomeStack.Screen name="EditReference" component={EditReferenceScreen}/>
+      <HomeStack.Screen name="Edit Reference" component={EditReferenceScreen}/>
       
     </HomeStack.Navigator>
   );

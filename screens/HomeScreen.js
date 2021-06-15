@@ -51,7 +51,7 @@ export default HomeScreen = ({ route, navigation}) => {
 
   //Fuegt neue Reference hinzu
   const addReferenceHandler = () => {
-    navigation.navigate("AddReference");
+    navigation.navigate("Add Reference");
   };
 
   //Setzt den Filter zurueck

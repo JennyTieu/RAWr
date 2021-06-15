@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext,useLayoutEffect} from 'react';
 import{View, FlatList} from 'react-native';
 import ReferenceItemTile from '../components/ReferenceItemTile';
 import {ReferenceContext} from '../data/ReferenceContext';
@@ -43,7 +43,7 @@ export default ReferenceScreen = ({route, navigation}) => {
     };
 
     const onEditHandler = (id, title, source, comment, tags, image) => {
-        navigation.navigate("EditReference", {itemId : id, itemTitle : title, itemSource : source, itemNote : comment, itemTags : tags, itemImage: image});
+        navigation.navigate("Edit Reference", {itemId : id, itemTitle : title, itemSource : source, itemNote : comment, itemTags : tags, itemImage: image});
     };
 
     const tagHandler = (tag) => {
@@ -61,6 +61,12 @@ export default ReferenceScreen = ({route, navigation}) => {
         return tags;
     };
 
+    useLayoutEffect(() => {
+        navigation.setOptions({
+          headerTitle: selectedReference[0].title,
+        });
+      }, [navigation]);
+    
     return (
         <View style={{ flex:1}}>
             <FlatList

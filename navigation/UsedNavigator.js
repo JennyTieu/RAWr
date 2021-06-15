@@ -21,7 +21,7 @@ export default UsedNavigator = () => {
       <UsedStack.Screen name="Used" component={UsedScreen}/>
       <UsedStack.Screen name="IndividualTag" component={IndividualTagScreen}/>
       <UsedStack.Screen name="IndividualReference" component={IndividualReferenceScreen}/>
-      <UsedStack.Screen name="EditReference" component={EditReferenceScreen}/>
+      <UsedStack.Screen name="Edit Reference" component={EditReferenceScreen}/>
     </UsedStack.Navigator>
   );
 };

@@ -22,7 +22,7 @@ export default MarkedNavigator = () => {
       <MarkedStack.Screen name="Marked" component={MarkedScreen}/>
       <MarkedStack.Screen name="IndividualTag" component={IndividualTagScreen}/>
       <MarkedStack.Screen name="IndividualReference" component={IndividualReferenceScreen}/>
-      <MarkedStack.Screen name="EditReference" component={EditReferenceScreen}/>
+      <MarkedStack.Screen name="Edit Reference" component={EditReferenceScreen}/>
     </MarkedStack.Navigator>
   );
 };
