@@ -43,6 +43,7 @@ export default TagScreen = ({ route, navigation}) => {
   return (
     <View style={{backgroundColor: "#f7f7f7"}}>
       <FlatList
+        columnWrapperStyle={{ flex:1, justifyContent: "center" }}
         data={tags}
         renderItem={(itemData) => {
           return (

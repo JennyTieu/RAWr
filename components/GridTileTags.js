@@ -6,7 +6,7 @@ export default GridTileTags = props => {
   return (
     <View style={styles.columnWrapper}> 
       <TouchableOpacity
-        style={[styles.itemContainer, {backgroundColor: props.backgCol}]}
+        style={[styles.itemContainer]}
         onPress={() => props.onClick(props.id, props.title)}
       >
         <Text style={styles.gridText}>{props.title}</Text>
@@ -18,21 +18,23 @@ export default GridTileTags = props => {
 const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
-    margin: 8,
-    padding: 10,
+    margin: 10,
     height: 45,
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Color.lightBackground,
     borderRadius: 30,
   },
   gridText: {
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: 'bold',
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: 9,
+    borderRadius: 22,
+    borderWidth: 3,
+    backgroundColor: "#ededed",
+    borderColor: Color.primary,
   },
   columnWrapper: {
-    flex: 1,
-    maxWidth: '50%'
+    //flex: 1,
+    //maxWidth: '50%',
   }
 });
