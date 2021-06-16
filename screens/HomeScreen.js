@@ -1,4 +1,4 @@
-import React, {useContext, useState, useLayoutEffect} from 'react';
+import React, {useContext, useState, useLayoutEffect, useEffect} from 'react';
 import {StyleSheet, View, FlatList,TouchableOpacity, Text, Switch} from "react-native";
 import {SearchBar, Button} from "react-native-elements";
 import {ReferenceContext} from '../data/ReferenceContext';
@@ -51,7 +51,8 @@ export default HomeScreen = ({ route, navigation}) => {
 
   //Fuegt neue Reference hinzu
   const addReferenceHandler = () => {
-    navigation.navigate("Add Reference");
+    //navigation.navigate("Add Reference");
+    console.log(allReferences.length + " " + references.length + " " + referenceData.referenceItems.length)
   };
 
   //Setzt den Filter zurueck
@@ -84,28 +85,32 @@ export default HomeScreen = ({ route, navigation}) => {
       }
     }
 
-    if (switchValue) {
-      if (referencesByTag.length === 0) {
-        referencesByTag = references.filter((item) => item.isUsed !== true);
-        setReferences(referencesByTag);
-        setShowFilterScreen(false);
-        setLengthRefsByTag(referencesByTag.length);
-      } else {
-        referencesByTag = referencesByTag.filter((item) => item.isUsed !== true);
-        setReferences(referencesByTag);
-        setShowFilterScreen(false);
-        setLengthRefsByTag(referencesByTag.length);
-      }
+    if (referencesByTag.length === 0 && !switchValue) {
+      setShowFilterScreen(false);
     } else {
-      if (referencesByTag.length === 0) {
-        setShowFilterScreen(false);
+      if (switchValue) {
+        if (referencesByTag.length === 0) {
+          referencesByTag = references.filter((item) => item.isUsed !== true);
+          setReferences(referencesByTag);
+          setShowFilterScreen(false);
+          setLengthRefsByTag(referencesByTag.length);
+        } else {
+          referencesByTag = referencesByTag.filter((item) => item.isUsed !== true);
+          setReferences(referencesByTag);
+          setShowFilterScreen(false);
+          setLengthRefsByTag(referencesByTag.length);
+        }
       } else {
-        setReferences(referencesByTag);
-        setShowFilterScreen(false);
-        setLengthRefsByTag(referencesByTag.length);
+        if (referencesByTag.length === 0) {
+          setShowFilterScreen(false);
+        } else {
+          setReferences(referencesByTag);
+          setShowFilterScreen(false);
+          setLengthRefsByTag(referencesByTag.length);
+        }
       }
+      setfilterResultValue(true);
     }
-    setfilterResultValue(true);
   };
 
   //Betaetigung des Switches im FilterScreen
@@ -128,8 +133,12 @@ export default HomeScreen = ({ route, navigation}) => {
 
   //wendet den Suchbegriff der Searchbar an
   const searchHandler = () => {
-    setReferences(referencesSearchBar);
-    setSearchValue(false);
+    if (searchText === "") {
+      setSearchValue(true);
+    } else {
+      setReferences(referencesSearchBar);
+      setSearchValue(false);
+    }
   };
 
   //beendet die Suche durch die SearchBar
