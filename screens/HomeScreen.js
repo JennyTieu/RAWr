@@ -1,7 +1,8 @@
-import React, {useContext, useState, useLayoutEffect} from 'react';
+import React, {useContext, useState, useLayoutEffect, useEffect} from 'react';
 import {StyleSheet, View, FlatList,TouchableOpacity, Text, Switch} from "react-native";
 import {SearchBar, Button} from "react-native-elements";
 import {ReferenceContext} from '../data/ReferenceContext';
+import { useIsFocused } from '@react-navigation/native';
 import {Ionicons, FontAwesome5} from "@expo/vector-icons";
 import GridTileList from '../components/GridTileList';
 import Color from '../constants/Colors';
@@ -38,6 +39,13 @@ export default HomeScreen = ({ route, navigation}) => {
 
   let referencesByTag = [];
   let referencesSearchBar = [];
+  const isFocused = useIsFocused();
+  
+  useEffect(() => {
+    setReferences(referenceData.referenceItems);
+    modalApplyHandler();
+    searchHandler();
+  }, [isFocused]);
 
   //Oeffnet das Fenster des Filter, zum Suchen nach bestimmten Tags und Ausblenden der used References
   const filterHandler = () => {
