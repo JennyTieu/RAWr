@@ -2,8 +2,6 @@ import React, { useState,useContext } from "react";
 import { StyleSheet, View, TextInput ,Text, TouchableOpacity, Image, ScrollView} from "react-native";
 import { Button } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
-import { Camera } from "expo-camera";
-import TAGS from '../data/dummy-data';
 import {ReferenceContext} from '../data/ReferenceContext';
 import * as ImagePicker from "expo-image-picker";
 import { MultiselectDropdown} from 'sharingan-rn-modal-dropdown';
@@ -11,16 +9,12 @@ import Color from '../constants/Colors';
 
 export default AddReferenceTile = (props) => {
 
-  const [isCameraOn, setIsCameraOn] = useState(false);
-  const [hasPermission, setHasPermission] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
   const [selectedImage, setSelectedImage] = useState(null);
 
   
   const [titleInput, setTitleInput] = useState("");
   const [sourceInput, setSourceInput] = useState("");
   const [noteInput, setNoteInput] = useState("");
-  const [tagChoice, setTagChoice] = useState([]);
 
   const[referenceData] = useContext(ReferenceContext);
   const [valueMS, setValueMS] = useState([]);
@@ -49,36 +43,10 @@ export default AddReferenceTile = (props) => {
       props.onAdd(valueMS, titleInput, noteInput, sourceInput, { uri: selectedImage.localUri });
     }
     
-    //if (currentInput !== '') {
-    //  props.onAdd(currentInput);
-    //}
+  
   };
 
-  const deleteHandler = () => {
-    if (currentInput === '') {
-      props.navigation.goBack();
-    } else {
-      setCurrentInput("");
-    }
-  };
-
-  const verifyPermissions = async (permission) => {
-    // const result = await Permissions.askAsync(permission);
-    const result = permission === ImagePicker ?
-    await ImagePicker.requestMediaLibraryPermissionsAsync()
-    : await permission.requestPermissionsAsync();
-
-    if (result.status !== "granted") {
-      Alert.alert(
-        "No permissions!",
-        "Please give permissions to use this app.",
-        [{ text: "Ok" }]
-      );
-      return false;
-    } else {
-      return true;
-    }
-  };
+ 
 
 
 

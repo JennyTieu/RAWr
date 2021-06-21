@@ -5,7 +5,6 @@ import{ReferenceContext} from '../data/ReferenceContext';
 import {Ionicons} from "@expo/vector-icons";
 import { View ,StyleSheet} from 'react-native';
 import GridTileList from '../components/GridTileList';
-import Color from '../constants/Colors';
 
 export default MarkedScreen = ({ route, navigation}) => {
     

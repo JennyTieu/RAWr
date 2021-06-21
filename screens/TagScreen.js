@@ -1,5 +1,5 @@
 import React, {useContext,useLayoutEffect} from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList } from "react-native";
 import {Button} from "react-native-elements";
 import{ReferenceContext} from '../data/ReferenceContext';
 import {Ionicons} from "@expo/vector-icons";

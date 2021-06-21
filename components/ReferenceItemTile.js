@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
+import { StyleSheet, Text, View, Image} from 'react-native';
 import {Button} from 'react-native-elements';
 import {Ionicons, FontAwesome5, AntDesign} from '@expo/vector-icons';
 import {Chip} from 'react-native-paper';

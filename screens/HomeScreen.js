@@ -1,4 +1,4 @@
-import React, {useContext, useState, useLayoutEffect, useEffect} from 'react';
+import React, {useContext, useState, useLayoutEffect} from 'react';
 import {StyleSheet, View, FlatList,TouchableOpacity, Text, Switch} from "react-native";
 import {SearchBar, Button} from "react-native-elements";
 import {ReferenceContext} from '../data/ReferenceContext';
@@ -51,8 +51,7 @@ export default HomeScreen = ({ route, navigation}) => {
 
   //Fuegt neue Reference hinzu
   const addReferenceHandler = () => {
-    //navigation.navigate("Add Reference");
-    console.log(allReferences.length + " " + references.length + " " + referenceData.referenceItems.length)
+    navigation.navigate("Add Reference");
   };
 
   //Setzt den Filter zurueck

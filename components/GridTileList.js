@@ -1,7 +1,6 @@
-import React, {useContext} from 'react';
-import{View, FlatList,StyleSheet} from 'react-native';
+import React from 'react';
+import{View, FlatList} from 'react-native';
 import GridTileImages from './GridTileImages';
-import {ReferenceContext} from '../data/ReferenceContext';
 
 export default GridTileList = (props) => {
     const clickHandler = (id) => {
