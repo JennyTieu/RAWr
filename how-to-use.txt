@@ -1,0 +1,48 @@
+How-To:
+
+1. Den Lösungscode ausführen:   - Öffne nach dem Extrahieren das Command Terminal
+                                - navigiere in den Ordner mit 'cd'
+                                - Führe die Befehle 'npm install' und anschließend 'nmp start' aus
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Description:
+RAWr ist eine Art-Reference App, die Künstlern dabei helfen soll eigene Referenzen für deren nächstes Kunstprojekt zu organisieren. 
+Es wird dem Nutzer die Möglichkeit gegeben eigene Werke oder auch Inspirationen aus der eigenen Handy Galerie hochzuladen oder auch mit der Kamera ein Bild zu machen.
+Hierbei kann die Sortierung durch personalisierten Tags vereinfacht werden! Bereits benutzte Referenzen, sowie Refrenzen die man für das nächste Projekt benutzen möchte, können markiert 
+und sehr einfach wieder gefunden werden. Das Suchen nach Referenzen wird somit viel einfacher!
+
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+
+App-Manual:
+Mit der Unteren Leiste kann man durch den HomeScreen, Used Screen und MarkedScreen navigieren!
+
+*HomeScreen:
+Beim HomeScreen kann man alle existierenden Referenzen finden.
+Durch klicken auf eine Referenz kommt man auf den individuellen Screen für die ausgewählte Referenz.
+Hierbei kann man mit einem Klick auf 'Edit' bzw. dem Stif Icon einzelne Elemente wie Titel,Tags, Note oder Quelle der Referenz bearbeiten, 
+mit einem Klick auf dem Mülleimer Icon die Referenz löschen, mit dem Bookmark Icon die Referenz markieren (wird somit bei MarkedScreen angezeigt) 
+oder mit dem Haken Icon die Referenz als 'benutzt'/'used' markieren!
+Zudem kann auf die einzelnen Tags geklickt werden, womit man auf die individuelle Tag Seite gelangt, wo man den Tagnamen bearbeiten kann oder sogar löschen!
+
+Zurück zum HomeScreen! Hier kann man auch eine neue Referenz hinzufügen, indem man auf den Plus Button auf der rechten Seite klickt.
+Hierbei können entweder Bilder aus der Galerie gewählt oder mit der Kamera ein Bild geschossen werden.
+
+Beim HomeScreen findet man auch eine Suchleiste sowie einen Filter. Bei der Suchleiste kann ein bestimmter Titel gesucht werden. Hier muss man nur den Titel eingeben (oder einen Teil)
+und auf das SuchIcon geklickt werden. Beim Filter kann nach Bildern mit bestimmten Tags gesucht werden. Zudem kann man mit einem Toggle Die bereits benutzten Referenzen aus oder auch wieder einblenden.
+Die Einstellung werden mit 'Apply' angewendet bzw. mit 'Clear' wieder entfernt!
+
+Wenn man auf das HashTag Icon im HomeScreen Header klickt, werden alle bereits existierenden Tags angezeigt. Man kann auf diese klicken um auf die individuelle Tag Seite, 
+des ausgewählten Tags zu gelangen. Durch das Plus oben im Header kann ein neuer Tag erstellt werden!
+
+
+*UsedScreen:
+Hier werden alle als 'bereits benutzt' markierten Referenzen angezeigt. Durch das Grid-Icon unter dem Header kann die Anzeige der Referenzen geändert werden.
+Dabei hat man die Auswahl zwischen der Grid darstellung wie beim HomeScreen oder als Liste der individuellen Referenzen (ähnlich wie Instagram), wo man einfach durchscrollen kann.
+
+*MarkedScreen:
+Hier werden alle 'marked' Referenzen angezeigt. Der Aufbau ist wie bei dem UsedScreen!
+
