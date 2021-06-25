@@ -4,6 +4,21 @@ How-To:
                                 - navigiere in den Ordner mit 'cd'
                                 - Führe die Befehle 'npm install' und anschließend 'nmp start' aus
 
+Benötigte Imports (durch den Befehlt "npm install" sollten diese automatisch importiert werden):
+•	react-native-appearance
+•	react-native-elements
+•	@expo/vector-icons
+•	sharingan-rn-modal-dropdown
+•	react-native-paper
+•	@react-navigation/bottom-tabs
+•	@react-navigation/stack
+•	@react-navigation/native
+•	react-native-gesture-handler
+•	react-native-screens
+•	react-native-appearance
+•	react-native-elements
+•	@expo/vector-icons
+•	react-native-modal
 
 -------------------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------------------
