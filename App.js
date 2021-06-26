@@ -14,12 +14,6 @@ export default (App) => {
 
 
   return (
-//    <View style={styles.container}>
-      //how to add images
-//      <Image style={styles.image} source={require('./data/artworks/for__infinity/48stylised.jpg')}/>
-//      <Text>Open up App.js to start working on your app!</Text>
-//      <StatusBar style="auto" />
-//    </View>
     <ReferenceContext.Provider value ={[referenceData, setReferenceData]}>
       <MainNavigator />
     </ReferenceContext.Provider>
