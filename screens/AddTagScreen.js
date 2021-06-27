@@ -1,5 +1,5 @@
 import React, {useContext, useState} from "react";
-import { View, Text, StyleSheet, TextInput, FlatList } from "react-native";
+import { View, Text, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback, Keyboard } from "react-native";
 import Tag from "../models/tag";
 import { ReferenceContext } from "../data/ReferenceContext";
 import { Button } from "react-native-elements";
@@ -44,60 +44,62 @@ export default TagScreen = ({ route, navigation}) => {
   };
 
   return (
-    <View style={styles.screenContainer}>
-      <View style={styles.topContainer}>
-        <Text style={styles.descriptionText}>Enter the title {"\n"}of your new tag below</Text>
-      </View>
-      <View style={styles.middleContainer}>
-        <Button
-          onPress={deleteTextHandler}
-          type="clear"
-          icon={
-            <Ionicons
-              name="md-close-outline"
-              size={32}
-              color={Color.iconColor}
-            />
-          }
-        />
-        <TextInput
-          placeholder="enter title"
-          style={styles.enterTitleText}
-          onChangeText={changeTextHandler}
-          value={currentInput}
-        />
-        <Button
-          onPress={addHandler}
-          type="clear"
-          icon={
-            <Ionicons
-              name="md-add"
-              size={32}
-              color={Color.iconColor}
-            />
-          }
-        />
-      </View>
-      <View style={styles.bottomContainer}>
-        <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-          <Text style={styles.allTagsText}>All tags:</Text>
-          <Ionicons
-            style={{textAlign: "right"}}
-            name="chevron-forward"
-            size={24}
-            color={Color.iconColor}
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.screenContainer}>
+        <View style={styles.topContainer}>
+          <Text style={styles.descriptionText}>Enter the title {"\n"}of your new tag below</Text>
+        </View>
+        <View style={styles.middleContainer}>
+          <Button
+            onPress={deleteTextHandler}
+            type="clear"
+            icon={
+              <Ionicons
+                name="md-close-outline"
+                size={32}
+                color={Color.iconColor}
+              />
+            }
+          />
+          <TextInput
+            placeholder="enter title"
+            style={styles.enterTitleText}
+            onChangeText={changeTextHandler}
+            value={currentInput}
+          />
+          <Button
+            onPress={addHandler}
+            type="clear"
+            icon={
+              <Ionicons
+                name="md-add"
+                size={32}
+                color={Color.iconColor}
+              />
+            }
           />
         </View>
-        <FlatList horizontal
-          data={tags}
-          renderItem={(itemData) => {
-            return (
-              <Text style={styles.tagStyle}>{itemData.item.title}</Text>
-            )
-          }}
-        />
-      </View>
-    </View>     
+        <View style={styles.bottomContainer}>
+          <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+            <Text style={styles.allTagsText}>All tags:</Text>
+            <Ionicons
+              style={{textAlign: "right"}}
+              name="chevron-forward"
+              size={24}
+              color={Color.iconColor}
+            />
+          </View>
+          <FlatList horizontal
+            data={tags}
+            renderItem={(itemData) => {
+              return (
+                <Text style={styles.tagStyle}>{itemData.item.title}</Text>
+              )
+            }}
+          />
+        </View>
+      </View> 
+    </TouchableWithoutFeedback>  
   );
 }
 
