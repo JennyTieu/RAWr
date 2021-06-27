@@ -1,5 +1,5 @@
 import React, {useLayoutEffect, useContext, useState} from "react";
-import { View, Text, StyleSheet, TextInput, Image } from "react-native";
+import { View, Text, StyleSheet, TextInput, Image, TouchableWithoutFeedback, Keyboard } from "react-native";
 import {ReferenceContext} from '../data/ReferenceContext';
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "react-native-elements";
@@ -89,108 +89,110 @@ export default IndividualTagScreen = ({route, navigation}) => {
   }, [navigation]);
 
   return (
-    <View style={styles.screenContainer}>
-      <View style={styles.middleContainer}>
-        <Button
-          onPress={deleteTextHandler}
-          type="clear"
-          icon={
-            <Ionicons
-              name="md-close-outline"
-              size={32}
-              color={Color.iconColor}
-            />
-          }
-        />
-        <TextInput
-          placeholder={tagTitle}
-          style={styles.title}
-          onChangeText={changeTextHandler}
-          value={currentInput}
-        />
-        <Button
-          onPress={changeTagTitleHandler}
-          type="clear"
-          icon={
-            <Ionicons
-              name="md-pencil"
-              size={32}
-              color={Color.iconColor}
-            />
-          }
-        />
-      </View>
-      <View>
-        <Text style={styles.imagesText}>References with this tag:</Text>
-      </View>
-      {images.length === 1 ?
-        (
-          <View style={styles.imageContainer}>
-            <Text>References marked by this tag</Text>
-            <Image style={styles.image} source={imageSource[0]}/> 
-          </View>
-        ) : (
-          images.length === 2 ? 
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.screenContainer}>
+        <View style={styles.middleContainer}>
+          <Button
+            onPress={deleteTextHandler}
+            type="clear"
+            icon={
+              <Ionicons
+                name="md-close-outline"
+                size={32}
+                color={Color.iconColor}
+              />
+            }
+          />
+          <TextInput
+            placeholder={tagTitle}
+            style={styles.title}
+            onChangeText={changeTextHandler}
+            value={currentInput}
+          />
+          <Button
+            onPress={changeTagTitleHandler}
+            type="clear"
+            icon={
+              <Ionicons
+                name="md-pencil"
+                size={32}
+                color={Color.iconColor}
+              />
+            }
+          />
+        </View>
+        <View>
+          <Text style={styles.imagesText}>References with this tag:</Text>
+        </View>
+        {images.length === 1 ?
           (
             <View style={styles.imageContainer}>
-              <Image style={styles.image} source={imageSource[0]}/>
-              <Image style={styles.image} source={imageSource[1]}/>
+              <Text>References marked by this tag</Text>
+              <Image style={styles.image} source={imageSource[0]}/> 
             </View>
           ) : (
-            images.length === 3 ? (
+            images.length === 2 ? 
+            (
               <View style={styles.imageContainer}>
                 <Image style={styles.image} source={imageSource[0]}/>
                 <Image style={styles.image} source={imageSource[1]}/>
-                <Image style={styles.image} source={imageSource[2]}/> 
               </View>
             ) : (
-              images.length === 4 ? (
+              images.length === 3 ? (
                 <View style={styles.imageContainer}>
-                <Image style={styles.image} source={imageSource[0]}/>
-                <Image style={styles.image} source={imageSource[1]}/>
-                <Image style={styles.image} source={imageSource[2]}/> 
-                <Image style={styles.image} source={imageSource[3]}/>
-              </View>
-              ) : (
-                <View style={styles.imageContainer}>
-                  <Image style={styles.image} source={imageSource[counterFirstPic]}/>
-                  <Image style={styles.image} source={imageSource[counterSecondPic]}/>
-                  <Image style={styles.image} source={imageSource[counterThirdPic]}/>
-                  <Button 
-                    onPress={showMorePicsHandler}
-                    type="clear"
-                    buttonStyle={styles.plusButton}
-                    icon={
-                      <Ionicons
-                        name="chevron-forward"
-                        size={38}
-                        color={Color.iconColor}
-                      />
-                    }          
-                  /> 
+                  <Image style={styles.image} source={imageSource[0]}/>
+                  <Image style={styles.image} source={imageSource[1]}/>
+                  <Image style={styles.image} source={imageSource[2]}/> 
                 </View>
+              ) : (
+                images.length === 4 ? (
+                  <View style={styles.imageContainer}>
+                  <Image style={styles.image} source={imageSource[0]}/>
+                  <Image style={styles.image} source={imageSource[1]}/>
+                  <Image style={styles.image} source={imageSource[2]}/> 
+                  <Image style={styles.image} source={imageSource[3]}/>
+                </View>
+                ) : (
+                  <View style={styles.imageContainer}>
+                    <Image style={styles.image} source={imageSource[counterFirstPic]}/>
+                    <Image style={styles.image} source={imageSource[counterSecondPic]}/>
+                    <Image style={styles.image} source={imageSource[counterThirdPic]}/>
+                    <Button 
+                      onPress={showMorePicsHandler}
+                      type="clear"
+                      buttonStyle={styles.plusButton}
+                      icon={
+                        <Ionicons
+                          name="chevron-forward"
+                          size={38}
+                          color={Color.iconColor}
+                        />
+                      }          
+                    /> 
+                  </View>
+                )
               )
             )
           )
-        )
-      } 
-      <View style={styles.bottomContainer}>
-        <Button 
-          onPress={deleteTagHandler}
-          type="solid"
-          title="Delete Tag"
-          titleStyle={styles.text}
-          buttonStyle={styles.button}
-          icon={
-            <Ionicons
-              name="md-trash-outline"
-              size={30}
-              color="white"
-            />
-          }
-        />
-      </View>
-    </View>     
+        } 
+        <View style={styles.bottomContainer}>
+          <Button 
+            onPress={deleteTagHandler}
+            type="solid"
+            title="Delete Tag"
+            titleStyle={styles.text}
+            buttonStyle={styles.button}
+            icon={
+              <Ionicons
+                name="md-trash-outline"
+                size={30}
+                color="white"
+              />
+            }
+          />
+        </View>
+      </View> 
+    </TouchableWithoutFeedback> 
   );
 }
 
